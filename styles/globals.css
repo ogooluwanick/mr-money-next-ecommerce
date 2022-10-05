@@ -166,6 +166,7 @@ width: 100%;
   margin-left: -20px;
   text-transform: uppercase;
 }
+
 .hero-banner-image{
   position: absolute;
   top: 0%;
@@ -625,10 +626,10 @@ margin-top: 160px;
     height: 560px;
   }
   .hero-banner-image{
-    width: 77%;
-    height: 62%;
+    width: 65%;
+    height: 65%;
     top: -2%;
-    right: -6%;
+    right: 0%;
   }
   .footer-banner-container{
     height: 560px;
