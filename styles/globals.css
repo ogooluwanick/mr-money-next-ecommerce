@@ -104,10 +104,9 @@ width: 100%;
 }
 .product-card{
  cursor: pointer;
-  transform: scale(1, 1);
+  /* transform: scale(1, 1); */
   transition: transform 0.5s ease;
  color: #324d67;
-
 }
 .product-card:hover{
   transform: scale(1.1,1.1)
@@ -256,6 +255,7 @@ text-align: end;
 }
 .banner-desc .right{
   line-height: 1.4;
+  text-align: right;
 }
 .banner-desc .right h3{
   font-weight: 800;
@@ -636,11 +636,14 @@ margin-top: 160px;
     margin-top: 80px;
   }
   .footer-banner-image{
-    width: 77%;
-    left: 30%;
-    top: 6%;
-    height: 56%
+        width: 65%;
+        height: 65%;
+        left: 35%;
+        top: 6%;
   }
+  .banner-desc .right {
+        text-align: left;
+}
   .banner-desc .left h3{
     font-weight: 900;
     font-size: 50px;
@@ -659,8 +662,9 @@ margin-top: 160px;
     font-size: 14px;
   }
   .banner-desc{
-    flex-wrap: wrap;
-    gap: 20px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 20px;
   }
   .hero-banner-container{
     line-height: 1.3;
