@@ -3,7 +3,6 @@ import LINK from "next/link"
 import { urlFor } from '../lib/client'
 
 const HeroBanner = ({heroBanner}) => {
-        console.log(heroBanner)
   return (
     <div className='hero-banner-container'>
         <div className="">
