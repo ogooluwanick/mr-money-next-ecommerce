@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import {client,urlFor} from "../../lib/client"
 import {AiFillStar,AiOutlineMinus,AiOutlinePlus,AiOutlineStar,AiOutlineTwitter} from "react-icons/ai"
 import { Product } from '../../components/index'
+import {useStateContext} from "../../context/StateContext"
 
 
 
 const ProductDetails = ({product,similarProducts}) => {
         const {name,image,slug,price,details}=product
-        console.log(name)
         const [index, setIndex] = useState(0)
+        const {plusQty,minusQty,qty,onAdd}=useStateContext()
+
+        
   return (
     <div>
         <div className="product-detail-container">
@@ -42,13 +45,13 @@ const ProductDetails = ({product,similarProducts}) => {
                         <div className="quantity">
                                 <h3>Quantity: </h3>
                                 <p className="quantity-desc">
-                                        <span className="minus" onClick={""}><AiOutlineMinus/></span>
-                                        <span className="num" onClick={""}>0</span>
-                                        <span className="plus" onClick={""}><AiOutlinePlus/></span>
+                                        <span className="minus" onClick={()=>minusQty()}><AiOutlineMinus/></span>
+                                        <span className="num" onClick={""}>{qty}</span>
+                                        <span className="plus" onClick={()=>plusQty()}><AiOutlinePlus/></span>
                                 </p>
                         </div>
                         <div className="buttons">
-                                <button type='button' className='add-to-cart' onClick={""}>Add to Cart</button>
+                                <button type='button' className='add-to-cart' onClick={()=>onAdd(product,qty)}>Add to Cart</button>
                                 <button type='button' className='buy-now' onClick={""}>Buy Now</button>
                         </div>
 
