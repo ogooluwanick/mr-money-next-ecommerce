@@ -692,6 +692,15 @@ margin-top: 160px;
   .product-detail-container{
     flex-wrap: wrap;
     }
+
+    .image-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;    
+    }
+
   .product-detail-container .product-detail-image{
     width: 350px;
     height: 350px;
