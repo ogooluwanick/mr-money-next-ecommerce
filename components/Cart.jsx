@@ -10,7 +10,7 @@ import {urlFor} from "../lib/client"
 
 const Cart = () => {
         const cartRef=useRef()
-        const {cartItems,totalPrice,totalQty,setShowCart}=useStateContext()
+        const {cartItems,totalPrice,totalQty,setShowCart,toggleCartItemQty,removeItem}=useStateContext()
   return (
     <div className='cart-wrapper' ref={cartRef}>
         <div className="cart-container">
@@ -47,12 +47,12 @@ const Cart = () => {
                                                         <div className="flex bottom">
                                                                 <div className="">
                                                                         <p className="quantity-desc">
-                                                                                <span className="minus" onClick={()=>""}><AiOutlineMinus/></span>
-                                                                                <span className="num" >{0}</span>
-                                                                                <span className="plus" onClick={()=>""}><AiOutlinePlus/></span>
+                                                                                <span className="minus" onClick={()=>toggleCartItemQty(item._id,"-")}><AiOutlineMinus/></span>
+                                                                                <span className="num" >{item.quantity}</span>
+                                                                                <span className="plus" onClick={()=>toggleCartItemQty(item._id,"+")}><AiOutlinePlus/></span>
                                                                         </p>
                                                                 </div>
-                                                                <button type='button' className='remove-item' onClick={()=>""}>
+                                                                <button type='button' className='remove-item' onClick={()=>removeItem(item._id)}>
                                                                         <TiDeleteOutline/>
                                                                 </button>
                                                         </div>

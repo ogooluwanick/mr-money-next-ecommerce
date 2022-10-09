@@ -75,29 +75,29 @@ const ProductDetails = ({product,similarProducts}) => {
   )
 }
 
-export const getStaticPaths = async () => {
-        const query = `*[_type == "product"] {
-                                        slug {
-                                                current
-                                        }
-                                }`;
+// export const getStaticPaths = async () => {
+//         const query = `*[_type == "product"] {
+//                                         slug {
+//                                                 current
+//                                         }
+//                                 }`;
       
-        const products = await client.fetch(query);
+//         const products = await client.fetch(query);
       
-        const paths = products.map((product) => ({
-          params: { 
-            slug: product.slug.current
-          }
-        }));
+//         const paths = products.map((product) => ({
+//           params: { 
+//             slug: product.slug.current
+//           }
+//         }));
       
-        return {
-          paths,
-          fallback: 'blocking'
-        }
-      }
+//         return {
+//           paths,
+//           fallback: 'blocking'
+//         }
+//       }
       
 
-export const getStaticProps= async ({ params}) => {
+export const getServerSideProps= async ({ params}) => {
         const productQuery=`*[_type == "product" && slug.current=="${params.slug}"][0]`
         const similarProductQuery=`*[_type == "product"]`
         
