@@ -415,7 +415,7 @@ padding: 30px 65px;
   background-color: #f02d34;
   color: #fff;
   cursor: pointer;
-    transform: scale(1, 1);
+  transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
 .btn:hover{
@@ -498,6 +498,8 @@ padding: 30px 65px;
   display: flex;
   gap: 30px;
 }
+
+
 .buttons .add-to-cart{
   padding: 10px 20px;
   border: 1px solid #f02d34 ;
@@ -513,6 +515,14 @@ padding: 30px 65px;
 }
 .buttons .add-to-cart:hover{
   transform:scale(1.1,1.1)
+}
+@media screen and (max-width:969px) {   
+        .buttons{
+                gap: 10px !important;;
+        }
+        .add-to-cart ,.buy-now{
+                width: 140px !important;
+        }
 }
 .buttons .buy-now{
   width: 200px;
@@ -626,7 +636,7 @@ margin-top: 160px;
   margin-top: 10px;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:800px) {   
   .hero-banner-container{
     height: 560px;
   }
@@ -730,6 +740,7 @@ margin-top: 160px;
   .buttons .buy-now{
     width: 150px;
   }
+
   .product-detail-container{
     margin: 20px;
   }
