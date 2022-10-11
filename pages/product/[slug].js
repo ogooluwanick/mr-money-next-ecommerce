@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {client,urlFor} from "../../lib/client"
 import {AiFillStar,AiOutlineMinus,AiOutlinePlus,AiOutlineStar,AiOutlineTwitter} from "react-icons/ai"
 import { Product } from '../../components/index'
@@ -10,7 +10,7 @@ const ProductDetails = ({product,similarProducts}) => {
         const {name,image,slug,price,details}=product
         const [index, setIndex] = useState(0)
         const {plusQty,minusQty,qty,onAdd}=useStateContext()
-
+       
         
   return (
     <div>
@@ -46,7 +46,7 @@ const ProductDetails = ({product,similarProducts}) => {
                                 <h3>Quantity: </h3>
                                 <p className="quantity-desc">
                                         <span className="minus" onClick={()=>minusQty()}><AiOutlineMinus/></span>
-                                        <span className="num" onClick={""}>{qty}</span>
+                                        <span className="num" >{qty}</span>
                                         <span className="plus" onClick={()=>plusQty()}><AiOutlinePlus/></span>
                                 </p>
                         </div>

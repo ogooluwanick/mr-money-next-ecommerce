@@ -25,9 +25,9 @@ export const StateContext= ({children})=>{
                 if(checkProductInCart){
 
                         const updatedCartItems=cartItems.map(item=>{
-                        if( item._id===product._id){
-                                        return {...item, quantity:item.quantity+quantity}
-                        }
+                                if( item._id===product._id){
+                                                return {...item, quantity:item.quantity+quantity}
+                                }
                         })
 
                         setCartItems(updatedCartItems)
