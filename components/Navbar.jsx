@@ -11,7 +11,10 @@ const Navbar = () => {
     <div className='navbar-container'>
         <p className='logo'>
                 <Link href={"/"}>
-                        GLAM
+                        <span className='logoSpan'>
+                                <img src="glam_icon.png" alt="GLAM Logo"  width={40} height={40}/>
+                                GLAM
+                        </span>
                 </Link>
         </p>
         <button type='button' className='cart-icon' onClick={()=>setShowCart(prev=>!prev)}>

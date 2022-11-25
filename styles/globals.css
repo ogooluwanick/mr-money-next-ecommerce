@@ -69,6 +69,24 @@ width: 100%;
   font-size: 18px;
 
 }
+
+.logoSpan{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.logoSpan:hover{
+        transform: scale(1.1);
+}
+
+.logoSpan img{
+        margin-top: -10px;
+}
+
+
 .cart-icon{
   font-size: 25px;
   color: gray;
@@ -138,6 +156,13 @@ width: 100%;
   height: 500px;
   line-height: 0.9; 
   width: 100%;
+
+  background-image: url(https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&w=800) ;
+  /* background-blend-mode: multiply; */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
 
 }
 
@@ -225,6 +250,11 @@ text-align: end;
   color: white;
   width: 100%;
   margin-top: 120px;
+
+        background-blend-mode: multiply; 
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(https://images.pexels.com/photos/963278/pexels-photo-963278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
 }
 .banner-desc{
   display: flex ;
@@ -585,11 +615,12 @@ padding: 30px 65px;
 }
 .success-wrapper, .cancel-wrapper{
   background-color: white;
-  min-height: 60vh;
-
+  min-height: 50vh;
+  
 }
 .success, .cancel{
   width: 1000px;
+  max-width: calc(100% - 2rem);
 margin: auto;
 margin-top: 160px;
   background-color: #dcdcdc;
@@ -599,6 +630,7 @@ margin-top: 160px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .success .icon {
