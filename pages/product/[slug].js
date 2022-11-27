@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import {AiFillStar,AiOutlineMinus,AiOutlinePlus,AiOutlineStar,AiOutlineTwitter} from "react-icons/ai"
 
 import {client,urlFor} from "../../lib/client"
-import {AiFillStar,AiOutlineMinus,AiOutlinePlus,AiOutlineStar,AiOutlineTwitter} from "react-icons/ai"
 import { Product } from '../../components/index'
 import {useStateContext} from "../../context/StateContext"
 import {toast} from "react-hot-toast"
 import SuggestionCarousel from '../../components/SuggestionCarousel'
 import Rating from '../../components/Rating'
+import { Store } from '../../context/Store'
+import { CART_ADD_ITEM } from '../../constants/constants'
 
 
 
@@ -18,12 +20,17 @@ const ProductDetails = ({product,similarProducts}) => {
         const {name,image,slug,price,details,rating,numReviews}=product
         let countInStock=3                                                                                                                        //Make  dyn later
         const [index, setIndex] = useState(0)
-        const {plusQty,minusQty,qty,onAdd,setShowCart,totalQty}=useStateContext()
+        // const {plusQty,minusQty,qty,onAdd,setShowCart,totalQty}=useStateContext()
+        const {state, dispatch}=useContext(Store)
 
         const handleBuyNow=()=>{
                 if (qty === 0 ) return toast.error("Empty cart 😢.")
                 onAdd(product,qty)
                 setShowCart(true)
+        } 
+
+        const handleAddToCart=(product,qty)=>{
+                dispatch({type: CART_ADD_ITEM, payload:{...product,  qty:1     }})
         }
 
 
@@ -63,7 +70,7 @@ const ProductDetails = ({product,similarProducts}) => {
                                 </p>
                         </div>
                         <div className="buttons">
-                                <button type='button' className='add-to-cart' onClick={()=>onAdd(product,qty)}>Add to Cart</button>
+                                <button type='button' className='add-to-cart' onClick={()=>handleAddToCart(product,qty)}>Add to Cart</button>
                                 <button type='button' className='buy-now' onClick={handleBuyNow}>Buy Now</button>
                         </div>
 
