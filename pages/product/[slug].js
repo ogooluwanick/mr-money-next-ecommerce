@@ -12,8 +12,11 @@ import Rating from '../../components/Rating'
 
 
 const ProductDetails = ({product,similarProducts}) => {
-        console.log("product",product)
+
+        if(!product) return <div>Product Not Found </div>                                                                //Incase Product is null
+
         const {name,image,slug,price,details,rating,numReviews}=product
+        let countInStock=3                                                                                                                        //Make  dyn later
         const [index, setIndex] = useState(0)
         const {plusQty,minusQty,qty,onAdd,setShowCart,totalQty}=useStateContext()
 
@@ -24,8 +27,9 @@ const ProductDetails = ({product,similarProducts}) => {
         }
 
 
+
        
-       
+      
         
   return (
     <div>
@@ -48,7 +52,8 @@ const ProductDetails = ({product,similarProducts}) => {
                         
                         <h4>Details: </h4>
                         <p>{details}</p>
-                        <p className="price">₦{price}</p>
+                        <p className="price">₦{price} </p>
+                        <p className="stock" style={{marginBottom:"10px"}}>{countInStock>0? "In stock" : "Unavalaiable"}</p>
                         <div className="quantity">
                                 <h3>Quantity: </h3>
                                 <p className="quantity-desc">

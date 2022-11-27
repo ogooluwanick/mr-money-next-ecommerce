@@ -18,6 +18,7 @@ a {
 
 .main-container{
 max-width: 1400px; 
+min-height: 75vh;
 margin: auto;
 width: 100%;
 
@@ -463,8 +464,8 @@ padding: 30px 65px;
   border-radius: 15px;
    background-color: #ebebeb;
 
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   cursor: pointer;
   transition: .3s ease-in-out;
 }
