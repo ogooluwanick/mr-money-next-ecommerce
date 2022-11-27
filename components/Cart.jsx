@@ -1,63 +1,62 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import {AiOutlineMinus,AiOutlinePlus,AiOutlineLeft,AiOutlineShopping} from "react-icons/ai"
 import {TiDeleteOutline} from "react-icons/ti"
 import {toast} from "react-hot-toast"
-import {useStateContext} from "../context/StateContext"
 import {urlFor} from "../lib/client"
 import getStripe from '../lib/getStripe'
 import Paystack from './Paystack'
+// import { useStateContext } from '../context/StateContext'
 
 
 
 const Cart = () => {
-        const cartRef=useRef()
-        const {cartItems,totalPrice,totalQty,setShowCart,toggleCartItemQty,removeItem}=useStateContext()
+        // const {cartItems,totalPrice,totalQty,setShowCart,toggleCartItemQty,removeItem}=useStateContext()
 
-        const handleStripeCheckout = async () => {
-                const stripe = await getStripe();
-                const response = await fetch('/api/stripe', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify(cartItems),
-                });
+        // const handleStripeCheckout = async () => {
+        //         const stripe = await getStripe();
+        //         const response = await fetch('/api/stripe', {
+        //           method: 'POST',
+        //           headers: {
+        //             'Content-Type': 'application/json',
+        //           },
+        //           body: JSON.stringify(cartItems),
+        //         });
             
-                if(response.statusCode === 500) return;
+        //         if(response.statusCode === 500) return;
                 
-                const data = await response.json();
+        //         const data = await response.json();
 
             
-                toast.loading('Redirecting...');
+        //         toast.loading('Redirecting...');
             
-                stripe.redirectToCheckout({ sessionId: data.id });
-              }
+        //         stripe.redirectToCheckout({ sessionId: data.id });
+        //       }
         
   return (
-    <div className='cart-wrapper' ref={cartRef}>
+    <div className='cart-wrapper' >
         <div className="cart-container">
-                <button type='button' className='cart-heading' onClick={()=>setShowCart(false)}>
+                <button type='button' className='cart-heading' onClick={"()=>setShowCart(false)"}>
                         <AiOutlineLeft/>
                         <span className='heading'>Your Cart</span>
-                        <span className='cart-num-items'>({totalQty} items)</span>
+                        <span className='cart-num-items'>({/*totalQty*/} items)</span>
                 </button>
 
-                {
+                {/* {
                         cartItems.length<1 && (
                                 <div className='empty-cart'>
                                         <AiOutlineShopping    size={150}/>
                                         <h3>Your shopping bag is empty</h3>
                                         <Link href={"/"}>
-                                                <button type='button' onClick={()=>setShowCart(false)} className="btn">
+                                                <button type='button' onClick={"()=>setShowCart(false)"} className="btn">
                                                         Continue Shopping
                                                 </button>
                                         </Link>
                                 </div> 
                         )
-                }
+                } */}
 
-                <div className="product-container">
+                {/* <div className="product-container">
                         {
                                 cartItems.length>=1 && cartItems.map((item)=>(
                                         <div className="product" key={item._id}>
@@ -70,12 +69,12 @@ const Cart = () => {
                                                         <div className="flex bottom">
                                                                 <div className="">
                                                                         <p className="quantity-desc">
-                                                                                <span className="minus" onClick={()=>toggleCartItemQty(item._id,"-")}><AiOutlineMinus/></span>
-                                                                                <span className="num" >{item.quantity}</span>
-                                                                                <span className="plus" onClick={()=>toggleCartItemQty(item._id,"+")}><AiOutlinePlus/></span>
+                                                                                <span className="minus" onClick={"()=>toggleCartItemQty(item._id,"-")"}><AiOutlineMinus/></span>
+                                                                                <span className="num" >{"item.quantity"}</span>
+                                                                                <span className="plus" onClick={"()=>toggleCartItemQty(item._id,"+")"}><AiOutlinePlus/></span>
                                                                         </p>
                                                                 </div>
-                                                                <button type='button' className='remove-item' onClick={()=>removeItem(item._id)}>
+                                                                <button type='button' className='remove-item' onClick={"()=>removeItem(item._id)"}>
                                                                         <TiDeleteOutline/>
                                                                 </button>
                                                         </div>
@@ -83,18 +82,18 @@ const Cart = () => {
                                         </div>
                                 ))
                         }
-                </div>
-                {cartItems.length>=1 && (
+                </div> */}
+                {/*cartItems.length>=1*/ true && (
                         <div className="cart-bottom">
                                 <div className="total">
                                         <h3>Sub-total:</h3>
-                                        <h3>₦{totalPrice}</h3>
+                                        <h3>₦{/*totalPrice*/}</h3>
                                 </div>
                                 <div className="btn-container">
-                                        <button type='button' className='btn' onClick={handleStripeCheckout}>
+                                        <button type='button' className='btn' onClick={"handleStripeCheckout"}>
                                                 Pay with Stripe
                                         </button>  
-                                        <Paystack totalPrice={totalPrice}/>
+                                        {/* <Paystack totalPrice={totalPrice}/> */}
                                 </div>
                         </div>
                 )}
