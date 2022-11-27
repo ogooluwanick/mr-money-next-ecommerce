@@ -6,6 +6,7 @@ import {toast} from "react-hot-toast"
 import {useStateContext} from "../context/StateContext"
 import {urlFor} from "../lib/client"
 import getStripe from '../lib/getStripe'
+import Paystack from './Paystack'
 
 
 
@@ -26,7 +27,7 @@ const Cart = () => {
                 if(response.statusCode === 500) return;
                 
                 const data = await response.json();
-                console.log("HERE")
+
             
                 toast.loading('Redirecting...');
             
@@ -92,8 +93,8 @@ const Cart = () => {
                                 <div className="btn-container">
                                         <button type='button' className='btn' onClick={handleStripeCheckout}>
                                                 Pay with Stripe
-                                        </button>
-                                        
+                                        </button>  
+                                        <Paystack totalPrice={totalPrice}/>
                                 </div>
                         </div>
                 )}

@@ -8,7 +8,7 @@ const Product = ({product:{_id,name,image,slug,price}}) => {
     <div>
         <LINK href={`/product/${slug.current}`}>
               <div className="product-card">
-                        <img className='product-image' src={urlFor(image&&image[0])} alt={`product ${name}`}  width="250px" height={250}/>
+                        <img className='product-image' src={urlFor(image&&image[0])} alt={`product ${name}`}  width="250px" height="250px"/>
                         <div className="product-name">{name}</div>
                         <div className="product-price">₦{price}</div>
               </div>

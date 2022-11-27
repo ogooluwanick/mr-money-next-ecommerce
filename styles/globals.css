@@ -67,7 +67,6 @@ width: 100%;
 .logo{
   color: gray;
   font-size: 18px;
-
 }
 
 .logoSpan{
@@ -134,7 +133,7 @@ width: 100%;
 }
 .product-image{
   border-radius: 15px;
- background-color: #ebebeb;
+  background-color: #ebebeb;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
@@ -490,20 +489,15 @@ padding: 30px 65px;
 .selected-image{
   background-color:#f02d34;
 }
-.reviews{
-  color: #f02d34;
-  margin-top: 10px;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
+
 
 .product-detail-desc h4{
   margin-top: 10px;
 }
 .product-detail-desc p{
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
+
 .reviews p{
   color: #324d67;
   margin-top: 0px;
@@ -523,6 +517,7 @@ padding: 30px 65px;
   gap: 20px;
   margin-top: 10px ;
   align-items: center;
+  
 }
 .product-detail-desc .buttons{
   display: flex;
@@ -572,25 +567,48 @@ padding: 30px 65px;
   transform:scale(1.1,1.1)
 }
 .quantity-desc{
+        min-width: fit-content;
         border: 1px solid gray;
-        padding: 6px;
-        width: fit-content;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
 }
 .quantity-desc span{
-  font-size: 16px;
-  padding: 6px 12px;
-  cursor: pointer;
+  font-size: 18px;
+  padding: 12px 15px;
+  
 }
+
+
 .quantity-desc .minus{
-  border-right: 1px solid gray;
-  color: #f02d34;
+        cursor: pointer;
+        border-right: 1px solid gray;
+        color: #f02d34;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
 }
 .quantity-desc .num{
-  border-right: 1px solid gray;
-  font-size: 20px;
+        font-size: 20px;
+        cursor: none;
+        padding: 0 10px;
+        width: 50px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
 }
 .quantity-desc .plus{
-  color: rgb(49, 168, 49);
+        border-left: 1px solid gray;
+        cursor: pointer;
+        color: rgb(49, 168, 49);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
 }
 
 .maylike-products-wrapper{
@@ -598,7 +616,7 @@ padding: 30px 65px;
 }
 .maylike-products-wrapper h2{
   text-align: center;
-  margin: 50px;
+  margin:20px 50px;
   color: #324d67;
 
   font-size: 28px;
@@ -825,4 +843,127 @@ margin-top: 160px;
   width: 300px;
   margin: auto;
 }
+}
+
+
+
+
+
+
+.banner-carousel {
+        display: flex;
+        justify-content: flex-start;
+        will-change: transition;
+        transition: 100ms all;
+
+        gap: 15px;
+       
+}
+
+
+.banner-carousel__wrapper {
+        width: 100vw;
+        max-width: 100vw !important;
+        position: relative;
+        overflow: scroll;
+        left: 50%;
+        right: 50%;
+        margin: 20px -50vw;
+        padding: 2rem 0;
+        -webkit-overflow-scrolling: touch;
+
+        color: black;
+        font-family: sans-serif;
+        text-decoration: none;
+        text-align: left;
+
+
+}
+.banner-carousel__wrapper::-webkit-scrollbar {
+        width: 0px !important;
+        background: transparent !important;
+        overflow: -moz-scrollbars-none !important;
+}
+.banner-carousel__wrapper::-webkit-scrollbar-thumb {
+        background: transparent;
+}
+.banner-carousel__img-container {
+        position: relative;
+        overflow: hidden;
+        transition: all .5s ease;
+        
+}
+.banner-carousel--portrait .banner-carousel__img-container {
+        width: 224px;
+        height: 408px;
+}
+.banner-carousel--square .banner-carousel__img-container {
+        width: 300px;
+        height: 300px;
+}
+.banner-carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        border-radius: 15px;
+        background-color: #ebebeb;
+        transform: scale(1, 1);
+        transition: transform 0.5s ease;
+}
+.banner-carousel__figure {
+        margin: 0;
+        display: table;
+        cursor: pointer;
+        color: #324d67;      
+
+}
+
+.banner-carousel__img-container:hover{
+        /* transform: scale(1.05,1) */
+}
+  
+
+.banner-carousel li {
+        margin-right: 10px;
+        transition: all .5s ease;
+        
+}
+.banner-carousel li:first-of-type {
+        margin-left: 10px  !important;
+}
+.banner-carousel li:first-of-type:hover{
+        padding-left: .5rem !important;
+}
+.banner-carousel li:last-of-type {
+        padding-right: 10px !important;
+}
+.banner-carousel li:last-of-type:hover {
+        padding-right: 20px  !important;
+}
+.banner-carousel a {
+        transition: all 0.2s;
+}
+.banner-carousel a:hover {
+        text-decoration: none;
+}
+
+.rating{
+        margin-top: 10px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+}
+
+.rating span{
+
+                margin-right: 10px;
+
+}
+
+.paystackBtn{
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
 }

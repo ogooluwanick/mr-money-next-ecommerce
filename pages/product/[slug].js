@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
+
 import {client,urlFor} from "../../lib/client"
 import {AiFillStar,AiOutlineMinus,AiOutlinePlus,AiOutlineStar,AiOutlineTwitter} from "react-icons/ai"
 import { Product } from '../../components/index'
 import {useStateContext} from "../../context/StateContext"
 import {toast} from "react-hot-toast"
+import SuggestionCarousel from '../../components/SuggestionCarousel'
+import Rating from '../../components/Rating'
 
 
 
 
 const ProductDetails = ({product,similarProducts}) => {
-        const {name,image,slug,price,details}=product
+        console.log("product",product)
+        const {name,image,slug,price,details,rating,numReviews}=product
         const [index, setIndex] = useState(0)
         const {plusQty,minusQty,qty,onAdd,setShowCart,totalQty}=useStateContext()
 
@@ -18,6 +22,9 @@ const ProductDetails = ({product,similarProducts}) => {
                 onAdd(product,qty)
                 setShowCart(true)
         }
+
+
+       
        
         
   return (
@@ -37,16 +44,8 @@ const ProductDetails = ({product,similarProducts}) => {
                 </div>
                 <div className="product-detail-desc">
                         <h1>{name}</h1>
-                        <div className="reviews">
-                                <div>
-                                        <AiFillStar/>
-                                        <AiFillStar/>
-                                        <AiFillStar/>
-                                        <AiFillStar/>
-                                        <AiOutlineStar/>
-                                </div>
-                                <p className="">(20)</p>
-                        </div>
+                        <Rating rating={rating?rating:4.5}  text={`${numReviews?numReviews:20}`}/>
+                        
                         <h4>Details: </h4>
                         <p>{details}</p>
                         <p className="price">₦{price}</p>
@@ -69,15 +68,7 @@ const ProductDetails = ({product,similarProducts}) => {
 
         <div className="maylike-products-wrapper">
                 <h2>You may also like</h2>
-                <div className="marquee">
-                        <div className="maylike-products-container track">
-                                {
-                                        similarProducts.map((product,i)=>(
-                                                <Product product={product} key={i}/>
-                                        ))
-                                }
-                        </div>
-                </div>
+                <SuggestionCarousel similarProducts={similarProducts}/>
         </div>
     </div>
   )

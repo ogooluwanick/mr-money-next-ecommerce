@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {AiOutlineShopping} from "react-icons/ai"
 import Cart from './Cart'
 import {useStateContext} from "../context/StateContext"
@@ -12,7 +13,7 @@ const Navbar = () => {
         <p className='logo'>
                 <Link href={"/"}>
                         <span className='logoSpan'>
-                                <img src="glam_icon.png" alt="GLAM Logo"  width={40} height={40}/>
+                                <Image src="/glam_icon.png" alt="GLAM Logo"  width={40} height={40}/>
                                 GLAM
                         </span>
                 </Link>
