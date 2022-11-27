@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {client,urlFor} from "../../lib/client"
 import {AiFillStar,AiOutlineMinus,AiOutlinePlus,AiOutlineStar,AiOutlineTwitter} from "react-icons/ai"
 import { Product } from '../../components/index'
-import {useStateContext} from "../../context/StateContext"
+// import {useStateContext} from "../../context/StateContext"
 import {toast} from "react-hot-toast"
 import SuggestionCarousel from '../../components/SuggestionCarousel'
 import Rating from '../../components/Rating'
@@ -18,13 +18,13 @@ const ProductDetails = ({product,similarProducts}) => {
         const {name,image,slug,price,details,rating,numReviews}=product
         let countInStock=3                                                                                                                        //Make  dyn later
         const [index, setIndex] = useState(0)
-        const {plusQty,minusQty,qty,onAdd,setShowCart,totalQty}=useStateContext()
+        // const {plusQty,minusQty,qty,onAdd,setShowCart,totalQty}=useStateContext()
 
-        const handleBuyNow=()=>{
-                if (qty === 0 ) return toast.error("Empty cart 😢.")
-                onAdd(product,qty)
-                setShowCart(true)
-        }
+        // const handleBuyNow=()=>{
+        //         if (qty === 0 ) return toast.error("Empty cart 😢.")
+        //         onAdd(product,qty)
+        //         setShowCart(true)
+        // }
 
 
 
@@ -57,14 +57,14 @@ const ProductDetails = ({product,similarProducts}) => {
                         <div className="quantity">
                                 <h3>Quantity: </h3>
                                 <p className="quantity-desc">
-                                        <span className="minus" onClick={()=>minusQty()}><AiOutlineMinus/></span>
-                                        <span className="num" >{qty}</span>
-                                        <span className="plus" onClick={()=>plusQty()}><AiOutlinePlus/></span>
+                                        <span className="minus" onClick={"()=>minusQty()"}><AiOutlineMinus/></span>
+                                        <span className="num" >{"qty"}</span>
+                                        <span className="plus" onClick={"()=>plusQty()"}><AiOutlinePlus/></span>
                                 </p>
                         </div>
                         <div className="buttons">
-                                <button type='button' className='add-to-cart' onClick={()=>onAdd(product,qty)}>Add to Cart</button>
-                                <button type='button' className='buy-now' onClick={handleBuyNow}>Buy Now</button>
+                                <button type='button' className='add-to-cart' onClick={"()=>onAdd(product,qty)"}>Add to Cart</button>
+                                <button type='button' className='buy-now' onClick={"handleBuyNow"}>Buy Now</button>
                         </div>
 
 

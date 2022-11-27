@@ -2,18 +2,18 @@ import React from 'react'
 import { useRouter } from "next/router"
 
 import { PaystackButton } from 'react-paystack';
-import { useStateContext } from '../context/StateContext';
+// import { useStateContext } from '../context/StateContext';
 
 
 const Paystack = ({totalPrice}) => {
         const route=useRouter()
-        const {setShowCart}=useStateContext()
+        // const {setShowCart}=useStateContext()
         
 
 
         const paystackSuccessHandler = (paymentResult) => {
                 console.log(paymentResult);
-                setShowCart(false)
+                // setShowCart(false)
                 route.push("/success")
                 // dispatch(payOrder(id,paymentResult))
 
