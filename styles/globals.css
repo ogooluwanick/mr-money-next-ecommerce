@@ -309,12 +309,13 @@ text-align: end;
   top: 0;
   z-index: 100;
   /* will-change: transform; */
-  transition: all 1s ease-in-out;
+  transition: all .5s ease-in-out;
 
 }
 .cart-container{
   height: 100vh;
   width: 600px;
+  z-index: 110;
   background-color: white;
   float: right;
   padding: 40px 10px;
@@ -774,8 +775,8 @@ margin-top: 160px;
     height: 350px;
   }
   .cart-container{
-    width: 415px;
-  padding: 4px;
+        width: 415px;
+        padding: 4px;
   }
   .cart-heading{
     margin-top: 35px;

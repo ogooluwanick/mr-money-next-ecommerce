@@ -21,7 +21,7 @@ const ProductDetails = ({product,similarProducts}) => {
         let countInStock=5                                                                                                                        //Make  dyn later
         
         const [index, setIndex] = useState(0)
-        const {state,dispatch,setShowCart ,showCart} = useContext(Store)
+        const {state,dispatch,setShowCart ,showCart, plusQty, minusQty} = useContext(Store)
 
         const  itemInCart=state.cart.cartItems.find(x=>x._id===_id)
         const  itemInCartQty=itemInCart ? itemInCart.qty :0
@@ -33,30 +33,13 @@ const ProductDetails = ({product,similarProducts}) => {
         const handleBuyNow=()=>{
                 if (qty === 0 ) return toast.error("Select some 😢.")
                 handleAddToCart(product,qty)
-                setShowCart(true)
+                setTimeout(() => {
+                        setShowCart(true)
+                }, 1000);
+                
         }
 
 
-        const plusQty=()=>{
-                setQty(prev=>{
-                       if (countInStock > qty) {
-                                return prev+1
-                       }
-                       else{
-                                toast.error(`Sorry. ${product.name} is out of stock 😢. Sorry. `,
-                                        {     
-                                                duration: 1500,
-                                                style: { maxWidth: screen.width <800 ? "80vw":"40vw" }
-                                        }
-                                )
-                                return prev
-                       }
-                })
-        }
-        const minusQty=()=>{
-                        setQty(prev=>prev>0 ? prev-1 : prev)
-                }
-        
 
         const handleAddToCart=(product,qty)=>{
                 const existItem= state.cart.cartItems.find((x)=> x.slug===product.slug)
@@ -108,9 +91,9 @@ const ProductDetails = ({product,similarProducts}) => {
                         <div className="quantity">
                                 <h3>Quantity: </h3>
                                 <p className="quantity-desc">
-                                        <span className="minus" onClick={()=>minusQty()}><AiOutlineMinus/></span>
+                                        <span className="minus" onClick={()=>minusQty(setQty,qty)}><AiOutlineMinus/></span>
                                         <span className="num" >{qty}</span>
-                                        <span className="plus" onClick={()=> plusQty()}><AiOutlinePlus/></span>
+                                        <span className="plus" onClick={()=> plusQty(setQty,qty,name)}><AiOutlinePlus/></span>
                                 </p>
                         </div>
                         <div className="buttons">

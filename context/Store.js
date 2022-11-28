@@ -1,4 +1,6 @@
 import React, { createContext, useContext,useReducer, useState } from "react";
+import {toast} from "react-hot-toast"
+
 // import {toast} from "react-hot-toast"
 
 import { CART_ADD_ITEM, CART_EMPTY, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from "../constants/constants";
@@ -44,7 +46,32 @@ function reducer(state,action){
 export function StoreProvider({ children }) {
         const [showCart, setShowCart] = useState(false)
         const [state, dispatch] = useReducer(reducer, initialState);
-        const value = { state, dispatch, setShowCart ,showCart  };
+
+        const plusQty=(setQty,qty,productName)=>{
+                let countInStock=5                                                                                                                        //Make  dyn later
+
+                setQty(prev=>{
+                       if (countInStock > qty) {
+                                return prev+1
+                       }
+                       else{
+                                toast.error(`Sorry. ${productName} is out of stock 😢. Sorry. `,
+                                        {     
+                                                duration: 1500,
+                                                style: { maxWidth: screen.width <800 ? "80vw":"40vw" }
+                                        }
+                                )
+                                return prev
+                       }
+                })
+        }
+        const minusQty=(setQty)=>{
+                        setQty(prev=>prev>0 ? prev-1 : prev)
+        }
+        
+       
+
+        const value = { state, dispatch, setShowCart ,showCart  ,plusQty, minusQty };
         
         return <Store.Provider value={value}>{children}</Store.Provider>;
 }
