@@ -17,23 +17,24 @@ const ProductDetails = ({product,similarProducts}) => {
 
         if(!product) return <div>Product Not Found </div>                                                                //Incase Product is null
 
-        const {name,image,slug,price,details,rating,numReviews}=product
+        const {name,image,_id,slug,price,details,rating,numReviews}=product
         let countInStock=5                                                                                                                        //Make  dyn later
         
         const [index, setIndex] = useState(0)
         const {state,dispatch,setShowCart ,showCart} = useContext(Store)
 
-        const  itemInCart=state.cart.cartItems.find(x=>x.name==name)
+        const  itemInCart=state.cart.cartItems.find(x=>x._id===_id)
         const  itemInCartQty=itemInCart ? itemInCart.qty :0
-        console.log("Here", itemInCart)
-        const [qty, setQty] = useState(itemInCartQty)
+        // console.table("Here", product)
+        const [qty, setQty] = useState(0)
+        console.log("itemInCart",itemInCart?.qty)
 
 
-        // const handleBuyNow=()=>{
-        //         if (qty === 0 ) return toast.error("Empty cart 😢.")
-        //         onAdd(product,qty)
-        //         setShowCart(true)
-        // }
+        const handleBuyNow=()=>{
+                if (qty === 0 ) return toast.error("Select some 😢.")
+                handleAddToCart(product,qty)
+                setShowCart(true)
+        }
 
 
         const plusQty=()=>{
@@ -59,8 +60,10 @@ const ProductDetails = ({product,similarProducts}) => {
 
         const handleAddToCart=(product,qty)=>{
                 const existItem= state.cart.cartItems.find((x)=> x.slug===product.slug)
-                
-                dispatch({type: CART_ADD_ITEM, payload:{...product,  qty   }})
+
+                if (qty === 0 ) return toast.error("Select some 😢.")
+
+                dispatch({ type: CART_ADD_ITEM, payload:{...product,  qty } })
 
                 toast.success(`${qty} ${product.name} added to cart.`,
                 {     duration: 1500,
@@ -71,6 +74,11 @@ const ProductDetails = ({product,similarProducts}) => {
         }
 
 
+       useEffect(() => {
+        
+        setQty(itemInCartQty)
+         
+       }, [itemInCart])
        
       
         
@@ -107,7 +115,7 @@ const ProductDetails = ({product,similarProducts}) => {
                         </div>
                         <div className="buttons">
                                 <button type='button' className='add-to-cart' onClick={()=>handleAddToCart(product,qty)}>Add to Cart</button>
-                                <button type='button' className='buy-now' onClick={"handleBuyNow"}>Buy Now</button>
+                                <button type='button' className='buy-now' onClick={handleBuyNow}>Buy Now</button>
                         </div>
 
 

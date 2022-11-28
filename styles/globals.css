@@ -319,7 +319,12 @@ text-align: end;
   float: right;
   padding: 40px 10px;
   position: relative;
-  
+}
+
+@media screen and (max-width:500px) {
+        .cart-container{
+                width: 100vw !important;
+        }
 }
 
 .footer-container{
@@ -386,6 +391,7 @@ padding: 20px 10px;
         height: 150px;
         border-radius: 15px;
         background-color: #ebebeb;
+        cursor: pointer;
         object-fit:contain;
 }
 .item-desc .flex{

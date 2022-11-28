@@ -14,15 +14,21 @@ function reducer(state,action){
         switch(action.type){
                 case CART_ADD_ITEM:
                         const item =action.payload
-                        const existItem= state.cart.cartItems.find((x)=> x.slug===item.slug)
+                        const existItem= state.cart.cartItems.find((x)=> x._id===item._id)
+                        
+
 
                         const cartItems = existItem? 
-                                                                state.cart.cartItems.map((x)=>x.name===item.name?item:x) : 
+                                                                state.cart.cartItems.map((x)=>x.name===item.name ? item: x) : 
                                                                 [...state.cart.cartItems,item]
+
+                        console.log     ("existItem",state.cart.cartItems.map((x)=>x._id===item._id ? item: x))
+
                        return {...state, cart:{ ...state.cart ,cartItems}}
 
-                case CART_REMOVE_ITEM:
-                        return {...state,cart:{ cartItems:state.cart.cartItems.filter((x)=>x.product!==action.payload) } }
+                
+                case CART_REMOVE_ITEM:                       //   fix this 
+                        return {...state,cart:{ cartItems:state.cart.cartItems.filter((x)=>x.slug !== action.payload.slug) } }
                 case CART_SAVE_SHIPPING_ADDRESS:
                         return {...state,shippingAddress:action.payload}
                 // case CART_SAVE_PAYMENT_METHOD:

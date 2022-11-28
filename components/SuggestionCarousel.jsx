@@ -35,7 +35,6 @@ const SuggestionCarousel = ({similarProducts}) => {
               
         useEffect(() => {
                       initCarousel();
-                      console.log(similarProducts[0])
         }, [ ])
         
   return (
