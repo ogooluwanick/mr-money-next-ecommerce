@@ -8,7 +8,8 @@ import { Store } from '../context/Store'
 
 
 const Navbar = () => {
-        const {state:{cart},dispatch} = useContext(Store)
+        const {state:{cart}, setShowCart ,showCart} = useContext(Store)
+
   return (
     <div className='navbar-container'>
         <p className='logo'>
@@ -19,13 +20,13 @@ const Navbar = () => {
                         </span>
                 </Link>
         </p>
-        <button type='button' className='cart-icon' onClick={"()=>setShowCart(prev=>!prev)"}>
+        <button type='button' className='cart-icon' onClick={()=>setShowCart(prev=>!prev)}>
                 <AiOutlineShopping/>
                {
                         cart.cartItems.length > 0  && <span className="cart-item-qty">{cart.cartItems.reduce((a, c)=> a + c.qty , 0)}</span>
                }
         </button>
-        {/* {showCart && <Cart />} */}
+        {showCart && <Cart />}
     </div>
   )
 }

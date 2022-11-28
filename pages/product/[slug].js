@@ -18,10 +18,15 @@ const ProductDetails = ({product,similarProducts}) => {
         if(!product) return <div>Product Not Found </div>                                                                //Incase Product is null
 
         const {name,image,slug,price,details,rating,numReviews}=product
-        let countInStock=3                                                                                                                        //Make  dyn later
+        let countInStock=5                                                                                                                        //Make  dyn later
         
         const [index, setIndex] = useState(0)
-        const {state,dispatch} = useContext(Store)
+        const {state,dispatch,setShowCart ,showCart} = useContext(Store)
+
+        const  itemInCart=state.cart.cartItems.find(x=>x.name==name)
+        const  itemInCartQty=itemInCart ? itemInCart.qty :0
+        console.log("Here", itemInCart)
+        const [qty, setQty] = useState(itemInCartQty)
 
 
         // const handleBuyNow=()=>{
@@ -31,22 +36,38 @@ const ProductDetails = ({product,similarProducts}) => {
         // }
 
 
+        const plusQty=()=>{
+                setQty(prev=>{
+                       if (countInStock > qty) {
+                                return prev+1
+                       }
+                       else{
+                                toast.error(`Sorry. ${product.name} is out of stock 😢. Sorry. `,
+                                        {     
+                                                duration: 1500,
+                                                style: { maxWidth: screen.width <800 ? "80vw":"40vw" }
+                                        }
+                                )
+                                return prev
+                       }
+                })
+        }
+        const minusQty=()=>{
+                        setQty(prev=>prev>0 ? prev-1 : prev)
+                }
+        
 
-        const handleAddToCart=(product)=>{
+        const handleAddToCart=(product,qty)=>{
                 const existItem= state.cart.cartItems.find((x)=> x.slug===product.slug)
-                const qty= existItem ? existItem.qty+= 1 : 1
+                
+                dispatch({type: CART_ADD_ITEM, payload:{...product,  qty   }})
 
-                // product.countInStock<qty &&  toast.error(`Sorry. ${product.name} is out of stock 😢.`)
-                countInStock<qty &&(
-                          toast.error(`Sorry. ${product.name} is out of stock 😢. Sorry. `,
-                          {     duration: 1500,
-                                style: {
-                                maxWidth: screen.width <800 ? "80vw":"40vw"
-                              },
-                          })
-                        )
-
-                dispatch({type: CART_ADD_ITEM, payload:{...product,  qty     }})
+                toast.success(`${qty} ${product.name} added to cart.`,
+                {     duration: 1500,
+                        style: {
+                        maxWidth: screen.width <800 ? "80vw":"40vw"
+                      },
+                })
         }
 
 
@@ -79,13 +100,13 @@ const ProductDetails = ({product,similarProducts}) => {
                         <div className="quantity">
                                 <h3>Quantity: </h3>
                                 <p className="quantity-desc">
-                                        <span className="minus" onClick={"()=>minusQty()"}><AiOutlineMinus/></span>
-                                        <span className="num" >{"qty"}</span>
-                                        <span className="plus" onClick={"()=>plusQty()"}><AiOutlinePlus/></span>
+                                        <span className="minus" onClick={()=>minusQty()}><AiOutlineMinus/></span>
+                                        <span className="num" >{qty}</span>
+                                        <span className="plus" onClick={()=> plusQty()}><AiOutlinePlus/></span>
                                 </p>
                         </div>
                         <div className="buttons">
-                                <button type='button' className='add-to-cart' onClick={()=>handleAddToCart(product)}>Add to Cart</button>
+                                <button type='button' className='add-to-cart' onClick={()=>handleAddToCart(product,qty)}>Add to Cart</button>
                                 <button type='button' className='buy-now' onClick={"handleBuyNow"}>Buy Now</button>
                         </div>
 

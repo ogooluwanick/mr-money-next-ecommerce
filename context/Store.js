@@ -36,7 +36,9 @@ function reducer(state,action){
 
 
 export function StoreProvider({ children }) {
+        const [showCart, setShowCart] = useState(false)
         const [state, dispatch] = useReducer(reducer, initialState);
-        const value = { state, dispatch };
+        const value = { state, dispatch, setShowCart ,showCart  };
+        
         return <Store.Provider value={value}>{children}</Store.Provider>;
 }
