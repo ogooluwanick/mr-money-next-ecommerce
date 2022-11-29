@@ -33,7 +33,10 @@ const ProductDetails = ({product,similarProducts}) => {
         const handleBuyNow=()=>{
                 if (qty === 0 ) return toast.error("Select some 😢.")
                 handleAddToCart(product,qty)
-                setShowCart(true)
+
+                setTimeout(() => {
+                        setShowCart(true)
+                }, 1000);
         }
 
 
@@ -59,7 +62,7 @@ const ProductDetails = ({product,similarProducts}) => {
         
 
         const handleAddToCart=(product,qty)=>{
-                const existItem= state.cart.cartItems.find((x)=> x.slug===product.slug)
+                const existItem= state.cart.cartItems.find((x)=> x._id===product._id)
 
                 if (qty === 0 ) return toast.error("Select some 😢.")
 
