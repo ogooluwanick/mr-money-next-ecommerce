@@ -4,7 +4,7 @@ import {AiOutlineMinus,AiOutlinePlus} from "react-icons/ai"
 import {TiDeleteOutline} from "react-icons/ti"
 import {urlFor} from "../lib/client"
 import { Store } from '../context/Store'
-import { CART_ADD_ITEM } from '../constants/constants'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/constants'
 import toast from 'react-hot-toast'
 
 
@@ -17,6 +17,11 @@ const CartItem = ({item}) => {
         const  itemInCartQty=itemInCart ? itemInCart.qty :0
         // console.table("Here", product)
         const [qty, setQty] = useState(0)
+
+        const removeItem=(product)=>{
+                dispatch({ type: CART_REMOVE_ITEM, payload:{...product } })
+        }
+        
 
         const handleAddToCart=(product,qty)=>{
                 const existItem= cart.cartItems.find((x)=> x.slug===product.slug)

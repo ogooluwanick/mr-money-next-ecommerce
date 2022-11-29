@@ -28,7 +28,7 @@ function reducer(state,action){
 
                 
                 case CART_REMOVE_ITEM:                       //   fix this 
-                        return {...state,cart:{ cartItems:state.cart.cartItems.filter((x)=>x.slug !== action.payload.slug) } }
+                        return {...state,cart:{ cartItems:state.cart.cartItems.filter((x)=>x._id !== action.payload._id) } }
                 case CART_SAVE_SHIPPING_ADDRESS:
                         return {...state,shippingAddress:action.payload}
                 // case CART_SAVE_PAYMENT_METHOD:
