@@ -10,7 +10,7 @@ const SuggestionCarousel = ({similarProducts}) => {
         const  initCarousel =()=> {
                 var $carousel = $('.banner-carousel') ,
                     sliderWidth = $carousel[0]?.scrollWidth,
-                    sliderWidth = $('.banner-carousel')[0].scrollWidth,
+                    sliderWidth = $('.banner-carousel')[0]?.scrollWidth,
                     docWidth = $(window).width(),
                     mouseX = 0,
                     mouseXPercentage = 0,

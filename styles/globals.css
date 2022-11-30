@@ -383,9 +383,12 @@ padding: 20px 10px;
 }
 .product{
   display: flex;
- gap: 30px;
+  gap: 30px;
   padding: 20px;
+  justify-content: space-between;
+  
 }
+
 .product .cart-product-image{
         width:180px ;
         height: 150px;
@@ -393,6 +396,8 @@ padding: 20px 10px;
         background-color: #ebebeb;
         cursor: pointer;
         object-fit:contain;
+
+        align-self: center;
 }
 .item-desc .flex{
   display: flex;

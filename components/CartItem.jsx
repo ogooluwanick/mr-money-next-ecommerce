@@ -74,7 +74,7 @@ const CartItem = ({item}) => {
   return (
         <div className="product" >
                 <Link  href={`/product/${item.slug.current}`}>
-                        <img className='cart-product-image' src={urlFor(item?.image[0])} alt={item?.name + " product image"} /> 
+                        <img className='cart-product-image' src={urlFor(item?.image)} alt={item?.name + " product image"} /> 
                 </Link>
                 <div className="item-desc">
                         <div className="flex top">

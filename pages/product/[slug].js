@@ -64,7 +64,7 @@ const ProductDetails = ({product,similarProducts}) => {
 
                 if (qty === 0 ) return toast.error("Select some 😢.")
 
-                dispatch({ type: CART_ADD_ITEM, payload:{...product,  qty } })
+                dispatch({ type: CART_ADD_ITEM, payload:{_id,name, price,slug, image:product.image[0], qty } })
 
                 toast.success(`${qty} ${product.name} added to cart.`,
                 {     duration: 1500,
