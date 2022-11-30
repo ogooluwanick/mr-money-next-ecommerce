@@ -9,12 +9,13 @@ import Paystack from './Paystack'
 import { Store } from '../context/Store'
 import { CART_REMOVE_ITEM } from '../constants/constants'
 import CartItem from './CartItem'
+import {  useRouter } from 'next/router'
 // import { useStateContext } from '../context/StateContext'
 
 
 
 const Cart = () => {
-        // const {cartItems,totalPrice,totalQty,setShowCart,toggleCartItemQty,removeItem}=useStateContext()
+        const router=useRouter()
         const {state:{cart}, dispatch, setShowCart ,showCart} = useContext(Store)
 
         const removeItem=(product)=>{
@@ -77,11 +78,11 @@ const Cart = () => {
                         <div className="cart-bottom">
                                 <div className="total">
                                         <h3>Sub-total:</h3>
-                                        <h3>₦{/*totalPrice*/}</h3>
+                                        <h3>₦{cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0)}</h3>
                                 </div>
                                 <div className="btn-container">
-                                        <button type='button' className='btn' onClick={"handleStripeCheckout"}>
-                                                Pay with Stripe
+                                        <button type='button' className='btn' onClick={()=>router.push("/shipping")}>
+                                                Check Out
                                         </button>  
                                         {/* <Paystack totalPrice={totalPrice}/> */}
                                 </div>
