@@ -400,6 +400,8 @@ padding: 20px 10px;
   width: 350px;
    color: #324d67;
 
+   align-items: center;
+
 }
 .item-desc .bottom{
   margin-top: 60px;
@@ -424,15 +426,32 @@ padding: 20px 10px;
   cursor: pointer;
   background: transparent;
   border: none;
+transition: transform .3s ease ;
+
 }
+.add-item{
+  font-size: 22px;
+  color: green;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+
+  transition: transform .3s ease ;
+}
+
+.remove-item:hover,.add-item:hover{
+        transform: scale(1.1);
+}
+
 .cart-bottom{
   position: absolute;
   bottom: 12px;
   right: 5px;
 width: 100%;
 padding: 30px 65px;
-
 }
+
+
 
 .btn-container{
   width: 400px;

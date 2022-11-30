@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
-import {AiOutlineMinus,AiOutlinePlus} from "react-icons/ai"
+import {AiFillCheckCircle, AiOutlineCheckCircle, AiOutlineMinus,AiOutlinePlus} from "react-icons/ai"
 import {TiDeleteOutline} from "react-icons/ti"
 import {urlFor} from "../lib/client"
 import { Store } from '../context/Store'
@@ -20,6 +20,12 @@ const CartItem = ({item}) => {
 
         const removeItem=(product)=>{
                 dispatch({ type: CART_REMOVE_ITEM, payload:{...product } })
+                toast.error(`${item.name} has been removed.`,
+                {     duration: 1500,
+                        style: {
+                        maxWidth: screen.width <800 ? "80vw":"40vw"
+                      },
+                })
         }
         
 
@@ -84,9 +90,14 @@ const CartItem = ({item}) => {
                                                 <span className="plus" onClick={()=>plusQty()} ><AiOutlinePlus/></span>
                                         </p>
                                 </div>
-                                <button type='button' className='remove-item' onClick={()=>removeItem(item)}>
-                                        <TiDeleteOutline/>
-                                </button>
+                                <div>
+                                        <button type='button' className='add-item' onClick={()=>handleAddToCart(item,qty)}>
+                                                <AiOutlineCheckCircle/>
+                                        </button>
+                                        <button type='button' className='remove-item' onClick={()=>removeItem(item)}>
+                                                <TiDeleteOutline/>
+                                        </button>
+                                </div>
                         </div>
                 </div>
         </div>
