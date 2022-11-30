@@ -15,7 +15,6 @@ const CartItem = ({item}) => {
 
         const  itemInCart=cart.cartItems.find(x=>x._id===item._id)
         const  itemInCartQty=itemInCart ? itemInCart.qty :0
-        // console.table("Here", product)
         const [qty, setQty] = useState(0)
 
         const removeItem=(product)=>{

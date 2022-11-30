@@ -84,7 +84,7 @@ const Cart = () => {
                                         <button type='button' className='btn' onClick={()=>router.push("/shipping")}>
                                                 Check Out
                                         </button>  
-                                        {/* <Paystack totalPrice={totalPrice}/> */}
+                                        {/* <Paystack totalPrice={cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0)}/> */}
                                 </div>
                         </div>
                 )}

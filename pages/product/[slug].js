@@ -25,9 +25,7 @@ const ProductDetails = ({product,similarProducts}) => {
 
         const  itemInCart=state.cart.cartItems.find(x=>x._id===_id)
         const  itemInCartQty=itemInCart ? itemInCart.qty :0
-        // console.table("Here", product)
         const [qty, setQty] = useState(0)
-        console.log("itemInCart",itemInCart?.qty)
 
 
         const handleBuyNow=()=>{
@@ -106,7 +104,7 @@ const ProductDetails = ({product,similarProducts}) => {
                         
                         <h4>Details: </h4>
                         <p>{details}</p>
-                        <p className="price">₦{price} </p>
+                        <p className="price">₦{price.toLocaleString()} </p>
                         <p className="stock" style={{marginBottom:"10px"}}>{countInStock>0? "In stock" : "Unavalaiable"}</p>
                         <div className="quantity">
                                 <h3>Quantity: </h3>
