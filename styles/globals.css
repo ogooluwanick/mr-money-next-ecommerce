@@ -86,7 +86,12 @@ width: 100%;
         margin-top: -10px;
 }
 
-
+.nav-btn-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+}
 .cart-icon{
   font-size: 25px;
   color: gray;
@@ -96,7 +101,16 @@ width: 100%;
   border: none;
   background-color: transparent;
 }
-.cart-icon:hover{
+.user-icon{
+  font-size: 22px;
+  color: gray;
+  cursor: pointer;
+  position: relative;
+  transition: transform .4s ease;
+  border: none;
+  background-color: transparent;
+}
+.cart-icon:hover,.user-icon:hover{
   transform: scale(1.1);
 }
 .cart-item-qty{
@@ -682,7 +696,7 @@ margin-top: 160px;
   text-align: center;
 }
 
-.success .icon {
+.success-icon {
    color: green;
    font-size: 40px;
 }

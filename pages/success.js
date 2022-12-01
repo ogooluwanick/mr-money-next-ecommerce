@@ -8,20 +8,17 @@ const Success = () => {
         // const {setCartItems,setTotalPrice,setTotalQty}=useStateContext()
         // const [order, setOrder] = useState(null)
 
-        // useEffect(() => {
-        //       localStorage.clear()
-        //       setCartItems([])
-        //       setTotalPrice(0)
-        //       setTotalQty(0)
-        //       Fireworks()
+        useEffect(() => {
+              
+              Fireworks()
           
-        // }, [])
+        }, [])
         
   return (
     <div className='success-wrapper'>
         
         <div className="success">
-                <p className="icon">
+                <p className="success-icon">
                         <BsBagCheckFill/>
                 </p>
                 <h2>Thank you for your order!</h2>
