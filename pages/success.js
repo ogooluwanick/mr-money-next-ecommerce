@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {BsBagCheckFill} from "react-icons/bs"
 // import { useStateContext } from '../context/StateContext'
-import { Fireworks } from '../lib/utililes'
+import { Fireworks } from '../lib/Fireworks'
 
 const Success = () => {
         // const {setCartItems,setTotalPrice,setTotalQty}=useStateContext()

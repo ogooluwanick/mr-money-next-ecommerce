@@ -6,7 +6,7 @@ const Home = ({products,banner}) => {
         
   return (
     <>
-        <HeroBanner heroBanner={banner.length&&banner[0]}/>
+        <HeroBanner heroBanner={banner.length?banner[0]:""}/>
 
         <div className="products-heading">
                 <h2>Best Selling Products</h2>
