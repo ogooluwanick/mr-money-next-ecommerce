@@ -81,7 +81,7 @@ const Cart = () => {
                                         <h3>₦{cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0)}</h3>
                                 </div>
                                 <div className="btn-container">
-                                        <button type='button' className='btn' onClick={()=>router.push("/login?redirect=/shipping")}>
+                                        <button type='button' className='btn' onClick={()=>{ router.push("/login?redirect=/shipping") && (setShowCart(false))} }>
                                                 Check Out
                                         </button>  
                                         {/* <Paystack totalPrice={cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0)}/> */}

@@ -2,29 +2,65 @@ import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import {Form,Button,Row,Col, InputGroup} from "react-bootstrap"
 import { useForm } from "react-hook-form";
+import { signIn, useSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
+import { getError } from '../lib/error';
+import { useRouter } from 'next/router';
 
 
 const initialState= {
-        firstName:"",
-        lastName:"",
+        name:"",
         email:"",
         password: "",
-        confirmPassword: "",
         phone:""
 }
 
 const LoginScreen = () => {
         const { register, handleSubmit , formState:{errors}} = useForm();
+        const router = useRouter()
+        const {redirect} =router.query
+        const {data: session}= useSession()
 
         const [isSignup, setIsSignup] = useState(true)
         const [formData, setFormData] = useState(initialState)
         const [nameError, setNameError] = useState('')
-    
-        const submitHandler=({email,password})=>{
 
+
+    
+        const submitHandler = async ({ email, password }) => {
+                try {
+                        const result = await signIn('credentials', {
+                        redirect: false,
+                        email,
+                        password,
+                  });
+
+                        if (result.error){
+                                toast.error( `${result.error}`,
+                                        {     
+                                                duration: 2000,
+                                                style: { maxWidth: screen.width <800 ? "80vw":"40vw" }
+                                        }
+                                )
+                        }
+                } catch (error) {
+                        toast.error( `${getError(error)}`,
+                                {     
+                                        duration: 2000,
+                                        style: { maxWidth: screen.width <800 ? "80vw":"40vw" }
+                                }
+                        )
+                }
         }
+
+
+        useEffect(() => {
+                if (session?.user){
+                        router.push( redirect || "/")
+                }
+        }, [router , redirect ,session])
+        
 
   return (
     <div className='loginPage' style={{flexDirection:!isSignup?"row-reverse":"row"}}> 

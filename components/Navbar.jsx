@@ -6,11 +6,15 @@ import {FaRegUserCircle} from "react-icons/fa"
 import Cart from './Cart'
 import { Store } from '../context/Store'
 import {  useRouter } from 'next/router'
+import { signIn, useSession } from "next-auth/react";
+
+
 // import {useStateContext} from "../context/StateContext"
 
 
 const Navbar = () => {
         const router=useRouter()
+        const { status, data: session } = useSession();
 
         const {state:{cart}, setShowCart ,showCart} = useContext(Store)
 
@@ -26,7 +30,16 @@ const Navbar = () => {
         </p>
         <div className="nav-btn-container">
                 <button onClick={()=>router.push("/login")} className="user-icon">
-                       <FaRegUserCircle/>
+                        {
+                                status === 'loading' ? (
+                                        'Loading'
+                                      ) : session?.user ? (
+                                        session.user.name
+                                      ) : 
+                                
+                                (<FaRegUserCircle/>)
+                        }
+                       
                 </button>
 
                 <button type='button' className='cart-icon' onClick={()=>setShowCart(prev=>!prev)}>
