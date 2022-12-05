@@ -90,7 +90,7 @@ width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.3rem;
 }
 .cart-icon{
   font-size: 25px;
@@ -100,15 +100,28 @@ width: 100%;
   transition: transform .4s ease;
   border: none;
   background-color: transparent;
+
+  padding: .5rem .3rem;
 }
 .user-icon{
   font-size: 22px;
   color: gray;
   cursor: pointer;
   position: relative;
+  padding: 0.5rem .3rem;
+
   transition: transform .4s ease;
   border: none;
   background-color: transparent;
+
+  
+
+}
+
+.user-icon-text{
+        font-size: 1em;
+        position: relative;
+        bottom: 2px;
 }
 .cart-icon:hover,.user-icon:hover{
   transform: scale(1.1);

@@ -29,12 +29,14 @@ const Navbar = () => {
                 </Link>
         </p>
         <div className="nav-btn-container">
-                <button onClick={()=>router.push("/login")} className="user-icon">
+                <button type='button'  onClick={()=>status!=="authenticated" ? router.push("/login"):alert(status)} className="user-icon">
                         {
-                                status === 'loading' ? (
-                                        'Loading'
-                                      ) : session?.user ? (
-                                        session.user.name
+                                status === 'loading' ? 
+                                      (
+                                        <span className='user-icon-text'>'Loading'</span>
+                                      ) : session?.user ? 
+                                      (
+                                        <span className='user-icon-text'>{session.user.name.split(" ")[0]}</span>
                                       ) : 
                                 
                                 (<FaRegUserCircle/>)
@@ -44,9 +46,9 @@ const Navbar = () => {
 
                 <button type='button' className='cart-icon' onClick={()=>setShowCart(prev=>!prev)}>
                         <AiOutlineShopping/>
-                {
+                        {
                                 cart.cartItems.length > 0  && <span className="cart-item-qty">{cart.cartItems.reduce((a, c)=> a + c.qty , 0)}</span>
-                }
+                        }
                 </button>
         </div>
         {showCart && <Cart />}
