@@ -31,10 +31,10 @@ const LoginScreen = () => {
         const submitHandler = async ({ email, password }) => {
                 try {
                         const result = await signIn('credentials', {
-                        redirect: false,
-                        email,
-                        password,
-                  });
+                                redirect: false,
+                                email,
+                                password,
+                        });
 
                         if (result.error){
                                 toast.error( `${result.error}`,
