@@ -3,15 +3,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {AiOutlineShopping} from "react-icons/ai"
 import {FaRegUserCircle} from "react-icons/fa"
-import {BsListCheck} from "react-icons/bs"
+import Cookies from "js-cookie"
 import Cart from './Cart'
 import { Store } from '../context/Store'
 import {  useRouter } from 'next/router'
-import { useSession } from "next-auth/react";
+import { useSession,signOut } from "next-auth/react";
 import { Menu, Transition } from '@headlessui/react'
 import { DropdownLink } from './DropdownLink'
 import {motion} from "framer-motion"
 import Script from 'next/script'
+import { CART_EMPTY } from '../constants/constants'
+
 
 
 
@@ -22,11 +24,17 @@ const Navbar = () => {
         const router=useRouter()
         const { status, data: session } = useSession();
 
-        const {state:{cart}, setShowCart ,showCart} = useContext(Store)
+        const {state:{cart}, dispatch, setShowCart ,showCart} = useContext(Store)
+
+
+        const handleLogout=()=>{
+                Cookies.remove("cart")
+                dispatch({type:CART_EMPTY})
+                signOut({callbackUrl:"/login"})
+        }
         
   return (
     <div className='navbar-container'>
-        <Script src="https://cdn.tailwindcss.com" />
         <p className='logo'>
                 <Link href={"/"}>
                         <span className='logoSpan'>
@@ -91,13 +99,15 @@ const Navbar = () => {
                                         </Menu>
                                                 
                                       ) : 
-                                      ( <button type='button'  onClick={()=>status!=="authenticated" ? router.push("/login"):alert(status)} className="user-icon"><FaRegUserCircle/></button>)
+                                      ( <button type='button'  onClick={()=>status!=="authenticated" ? router.push("/login"):alert(status)} className="user-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"/></svg>                                        
+                                        </button>)
                         }
                        
 
 
                 <button type='button' className='cart-icon' onClick={()=>setShowCart(prev=>!prev)}>
-                        <AiOutlineShopping/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16 6v-2c0-2.209-1.791-4-4-4s-4 1.791-4 4v2h-5v18h18v-18h-5zm-7-2c0-1.654 1.346-3 3-3s3 1.346 3 3v2h-6v-2zm10 18h-14v-14h3v1.5c0 .276.224.5.5.5s.5-.224.5-.5v-1.5h6v1.5c0 .276.224.5.5.5s.5-.224.5-.5v-1.5h3v14z"/></svg>
                         {
                                 cart.cartItems.length > 0  && <span className="cart-item-qty">{cart.cartItems.reduce((a, c)=> a + c.qty , 0)}</span>
                         }

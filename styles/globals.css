@@ -95,6 +95,7 @@ width: 100%;
 .cart-icon{
   font-size: 25px;
   color: gray;
+  fill: gray;
   cursor: pointer;
   position: relative;
   transition: transform .4s ease;
@@ -104,7 +105,7 @@ width: 100%;
   padding: .5rem .3rem;
 }
 .user-icon{
-  font-size: 22px;
+  font-size: 22px !important;
   color: gray;
   cursor: pointer;
   position: relative;
@@ -121,6 +122,7 @@ width: 100%;
 .user-icon{
         font-size: 1em;
         position: relative;
+        fill: grey;
         /* bottom: 2px; */
 }
 .user-icon-menu{
@@ -129,7 +131,7 @@ width: 100%;
 }
 
 .user-icon-menu-text{
-        /* font-size: 1em; */
+        font-size: 1em !important;
         position: relative;
         /* bottom: 2px; */
 
@@ -142,7 +144,7 @@ width: 100%;
 
 .user-icon-menu-items{
         padding: .4rem;
-        margin-top: .4rem;
+        margin-top: .7rem;
         position: absolute;
         background-color: #fff;
         right: 0;
@@ -185,8 +187,8 @@ width: 100%;
 }
 .cart-item-qty{
   position: absolute;
-  right: -7px;
-  top: -1px;
+  right: -5px;
+  top: 3px;
   font-size: 12px;
   color: #eee;
   background-color: #f02d34;
