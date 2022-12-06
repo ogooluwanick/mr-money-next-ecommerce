@@ -48,7 +48,7 @@ const Navbar = () => {
                                 status === 'loading' ? 
                                       (
                                         <button type='button'  onClick={()=>status!=="authenticated" ? router.push("/login"):alert(status)} className="user-icon">
-                                                <span className='user-icon-text'>'Loading'</span>
+                                                <span className='user-icon-text'>Loading...</span>
                                         </button>
                                         
                                       ) : session?.user ? 

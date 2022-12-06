@@ -1329,3 +1329,21 @@ input:focus {
         color: #FF3333;
         padding: 0.3rem 3.8rem;
      }
+
+
+     .breadcrumbs-container{
+        /* margin-bottom: 2rem; */
+        display: flex;
+        flex-wrap: wrap;
+     }
+
+     .breadcrumb{
+        flex: 1;
+        border-bottom: 2px double #324d67 !important; 
+        border-radius: 50px;
+        text-align: center;
+        cursor: pointer;
+     }
+
+     .inactive-crum{ color: grey; border: grey;  cursor: not-allowed; opacity: 0.5;}
+     .active-crum{color: #334d67; border: #324d67 ;}
