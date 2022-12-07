@@ -11,6 +11,7 @@ const initialState={
         // cart: { cartItems: [] },
         cart: Cookies.get("cart")? JSON.parse(Cookies.get("cart")) :  {cartItems: [] },         //check for cart in cookie parse it and put in state, else put sameold  cartItems arr
         shippingAddress: Cookies.get("shippingAddress")? JSON.parse(Cookies.get("shippingAddress")) :  {fullName:"",address:"", city:"" ,postcode:"", country:""},         //check for cart in cookie parse it and put in state, else put sameold  cartItems arr
+        paymentMethod: Cookies.get("paymentMethod")? JSON.parse(Cookies.get("paymentMethod")) :  "",         //check for cart in cookie parse it and put in state, else put sameold  cartItems arr
 }
 
 
@@ -43,8 +44,9 @@ function reducer(state,action){
                 case CART_SAVE_SHIPPING_ADDRESS:
                         Cookies.set("shippingAddress", JSON.stringify( {...state.shippingAddress , ...action.payload}))
                         return {...state,shippingAddress:{...state.shippingAddress , ...action.payload}}
-                // case CART_SAVE_PAYMENT_METHOD:
-                //         return {...state,paymentMethod:action.payload}
+                case CART_SAVE_PAYMENT_METHOD:
+                        Cookies.set("paymentMethod", JSON.stringify( action.payload))
+                        return {...state,paymentMethod:action.payload}
                 case CART_EMPTY: 
                         return {...state, cart:{cartItems:[]}};
                 default:

@@ -6,6 +6,7 @@ import { signIn, useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import { getError } from '../lib/error';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 
 const initialState= {
@@ -62,6 +63,9 @@ const LoginScreen = () => {
 
   return (
     <div className='loginPage' style={{flexDirection:!isSignup?"row-reverse":"row"}}> 
+        <Head>
+                <title>{isSignup?"Login":"Sign up"} | Glams Haven</title>       
+        </Head>
         <div className='loginImageBox'  >  
                 <div className="login_circle"></div>
                 <div className="login_blurbox"></div>

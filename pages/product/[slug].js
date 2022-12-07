@@ -9,6 +9,7 @@ import SuggestionCarousel from '../../components/SuggestionCarousel'
 import Rating from '../../components/Rating'
 import { Store } from '../../context/Store'
 import { CART_ADD_ITEM } from '../../constants/constants'
+import Head from 'next/head'
 
 
 
@@ -85,6 +86,9 @@ const ProductDetails = ({product,similarProducts}) => {
         
   return (
     <div>
+        <Head>
+                <title>{product.name} | Glam's Haven</title>
+        </Head>
         <div className="product-detail-container">
                 <div className="image-container">
                         <div className="">

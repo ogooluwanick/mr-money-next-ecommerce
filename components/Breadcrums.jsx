@@ -4,8 +4,7 @@ import React from 'react';
 export default function Breadcrumbs({ activeStep = 0 }) {
         const crumbs=[
                 {name:"Login" , link:"/login"},
-                {name:"Shipping Address" , link:"/shipping"},
-                {name:"Payment Method" , link:"/payment_method"},
+                {name:"Shipping" , link:"/shipping"},
                 {name:"Place Order" , link:"/place_order"},
         ]
   return (
@@ -20,13 +19,6 @@ export default function Breadcrumbs({ activeStep = 0 }) {
                                                 : 'inactive-crum'
                                         }`
                                 }
-                                
-                                // { 
-                                //          ...index <= activeStep
-                                //                 ? 
-                                //                 : ''
-                                        
-                                // }
                                 >
                                         {step.name}
                                 </div>

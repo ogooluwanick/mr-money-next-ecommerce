@@ -1,15 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { FaStarHalfAlt } from 'react-icons/fa'
 
 const Rating = ({rating,text,color}) => {
   return (
     <div className="rating">
             <span>
-                <i className={rating >=1 ?  "fa-solid fa-star" : rating>=.5 ? "fa-solid fa-star-half-stroke" :  "far  fa-star"}  style={{color}}  />
-                <i className={rating >=2 ?  "fa-solid fa-star" : rating>=1.5 ? "fa-solid fa-star-half-stroke" :  "far  fa-star"}  style={{color}}/>
-                <i className={rating >=3 ?  "fa-solid fa-star" : rating>=2.5 ? "fa-solid fa-star-half-stroke" :  "far  fa-star"}  style={{color}}/>
-                <i className={rating >=4 ?  "fa-solid fa-star" : rating>=3.5 ? "fa-solid fa-star-half-stroke" :  "far  fa-star"}  style={{color}}/>
-                <i className={rating >=5 ?  "fa-solid fa-star" : rating>=4.5 ? "fa-solid fa-star-half-stroke" :  "far  fa-star"}  style={{color}}/>
+                {rating >=1 ?  <AiFillStar style={{color,fontSize:"20px"}} /> : rating>=.5 ? <FaStarHalfAlt style={{color,fontSize:"16.5px",marginBottom:"2.2px",marginLeft:"1px"}}/>  :  <AiOutlineStar style={{color,fontSize:"20px"}}   />} 
+                {rating >=2 ?  <AiFillStar style={{color,fontSize:"20px"}} /> : rating>=1.5 ? <FaStarHalfAlt style={{color,fontSize:"16.5px",marginBottom:"2.2px",marginLeft:"1px"}}/>  :  <AiOutlineStar style={{color,fontSize:"20px"}}   />} 
+                {rating >=3 ?  <AiFillStar style={{color,fontSize:"20px"}} /> : rating>=2.5 ? <FaStarHalfAlt style={{color,fontSize:"16.5px",marginBottom:"2.2px",marginLeft:"1px"}}/>  :  <AiOutlineStar style={{color,fontSize:"20px"}}   />} 
+                {rating >=4 ?  <AiFillStar style={{color,fontSize:"20px"}} /> : rating>=3.5 ? <FaStarHalfAlt style={{color,fontSize:"16.5px",marginBottom:"2.2px",marginLeft:"1px"}}/>  :  <AiOutlineStar style={{color,fontSize:"20px"}}   />} 
+                {rating >=5 ?  <AiFillStar style={{color,fontSize:"20px"}} /> : rating>=4.5 ?  <FaStarHalfAlt style={{color,fontSize:"16.5px",marginBottom:"2px",marginLeft:"1px"}}/>  :  <AiOutlineStar style={{color,fontSize:"20px"}}   />} 
             </span>
             <span>({text && text})</span>
     </div>
