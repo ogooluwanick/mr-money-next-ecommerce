@@ -1036,9 +1036,9 @@ margin-top: 160px;
 
 }
 
-.banner-carousel__img-container:hover{
-        /* transform: scale(1.05,1) */
-}
+/* .banner-carousel__img-container:hover{
+        transform: scale(1.05,1)
+} */
   
 
 .banner-carousel li {
