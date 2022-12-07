@@ -1,12 +1,15 @@
 import React from 'react'
 import { Product,FooterBanner,HeroBanner } from '../components/index'
 import {client} from "../lib/client"
+import {default as AllProducts}   from '../models/Product'
+import Banner  from '../models/Banner'
+import db from "../lib/db"
 
-const Home = ({products,banner}) => {
+const Home = ({products,banners}) => {
         
   return (
     <>
-        <HeroBanner heroBanner={banner.length?banner[0]:""}/>
+        <HeroBanner heroBanner={banners.length?banners[0]:""}/>
 
         <div className="products-heading">
                 <h2>Best Selling Products</h2>
@@ -19,19 +22,20 @@ const Home = ({products,banner}) => {
                 }
         </div>
 
-        <FooterBanner footerBanner={banner&& banner[0]}/>
+        <FooterBanner footerBanner={banners&& banners[1]}/>
     </>
   )
 }
 
 export const getServerSideProps=async ({})=>{
-                const productQuery='*[_type == "product"]'
-                const products= await client.fetch(productQuery)
+                
 
-                const bannerQuery='*[_type == "banner"]'
-                const banner= await client.fetch(bannerQuery)
+                await db.connect();
+                const products= await AllProducts.find().lean();
+                const banners= await Banner.find().lean();
 
-                return {props:{products,banner}}
+
+                return {props:{  products:products.map(db.convertDocToObj),  banners:banners.map(db.convertDocToObj)  }}
 }
 
 

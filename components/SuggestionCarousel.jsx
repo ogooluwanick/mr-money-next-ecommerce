@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import $ from "jquery"
 import Link from 'next/link';
-import { urlFor } from '../lib/client'
 
 
 
@@ -46,7 +45,7 @@ const SuggestionCarousel = ({similarProducts}) => {
                                                         <Link href={`/product/${product.slug.current}`}>
                                                                 <div class="banner-carousel__figure ">
                                                                         <div class="banner-carousel__img-container">
-                                                                                <img  src={urlFor(product.image&&product.image[0])} alt={`product ${product.name}`}   style={{display:"block"}}/>
+                                                                                <img  src={product.image&&product.image[0]} alt={`product ${product.name}`}   style={{display:"block"}}/>
                                                                         </div>
                                                                         <div className='product-name'>{product.name}</div>
                                                                         <div className='product-price'>₦{product.price}</div>

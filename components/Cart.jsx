@@ -3,7 +3,6 @@ import Link from 'next/link'
 import {AiOutlineMinus,AiOutlinePlus,AiOutlineLeft,AiOutlineShopping} from "react-icons/ai"
 import {TiDeleteOutline} from "react-icons/ti"
 import {toast} from "react-hot-toast"
-import {urlFor} from "../lib/client"
 import getStripe from '../lib/getStripe'
 import Paystack from './Paystack'
 import { Store } from '../context/Store'

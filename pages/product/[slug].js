@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import {client,urlFor} from "../../lib/client"
-import {AiFillStar,AiOutlineMinus,AiOutlinePlus,AiOutlineStar,AiOutlineTwitter} from "react-icons/ai"
+import {AiOutlineMinus,AiOutlinePlus} from "react-icons/ai"
 import { Product } from '../../components/index'
 // import {useStateContext} from "../../context/StateContext"
 import {toast} from "react-hot-toast"
@@ -10,6 +9,9 @@ import Rating from '../../components/Rating'
 import { Store } from '../../context/Store'
 import { CART_ADD_ITEM } from '../../constants/constants'
 import Head from 'next/head'
+import Product from '../../models/Product'
+import Banner from '../../models/Banner'
+import db from '../../lib/db'
 
 
 
@@ -92,12 +94,12 @@ const ProductDetails = ({product,similarProducts}) => {
         <div className="product-detail-container">
                 <div className="image-container">
                         <div className="">
-                                <img src={urlFor(image&&image[index])} className="product-detail-image"/>
+                                <img src={image&&image[index]} className="product-detail-image"/>
                         </div>
                         <div className="small-images-container">
                                 {
                                         image?.map((img,i)=>(
-                                                <img src={urlFor(img)} key={i} className={i===index?"small-image selected-image":"small-image"} onMouseEnter={()=>setIndex(i)}/>
+                                                <img src={img} key={i} className={i===index?"small-image selected-image":"small-image"} onMouseEnter={()=>setIndex(i)}/>
                                         ))
                                 }
                         </div>
@@ -157,14 +159,14 @@ const ProductDetails = ({product,similarProducts}) => {
 //       }
       
 
-export const getServerSideProps= async ({ params}) => {
-        const productQuery=`*[_type == "product" && slug.current=="${params.slug}"][0]`
-        const similarProductQuery=`*[_type == "product"]`
+export const getServerSideProps= async ({ params:{slug}}) => {
         
-        const product= await client.fetch(productQuery)
-        const similarProducts= await client.fetch(similarProductQuery)
 
-        return {props:{product,similarProducts}}
+        await db.connect();
+                const product= await Product.findOne({slug}).lean();
+                const similarProducts= await Product.find({}).sort({rating:-1}).limit(10).lean();
+
+        return {props:{  product:product.map(db.convertDocToObj),  similarProducts:similarProducts.map(db.convertDocToObj)  }}
 }
 
 export default ProductDetails

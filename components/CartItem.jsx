@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 import {AiFillCheckCircle, AiOutlineCheckCircle, AiOutlineMinus,AiOutlinePlus} from "react-icons/ai"
 import {TiDeleteOutline} from "react-icons/ti"
-import {urlFor} from "../lib/client"
 import { Store } from '../context/Store'
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/constants'
 import toast from 'react-hot-toast'
@@ -74,7 +73,7 @@ const CartItem = ({item}) => {
   return (
         <div className="product" >
                 <Link  href={`/product/${item.slug.current}`}>
-                        <img className='cart-product-image' src={urlFor(item?.image)} alt={item?.name + " product image"} /> 
+                        <img className='cart-product-image' src={item?.image} alt={item?.name + " product image"} /> 
                 </Link>
                 <div className="item-desc">
                         <div className="flex top">
