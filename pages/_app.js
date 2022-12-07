@@ -33,7 +33,7 @@ function Auth({ children, adminOnly }) {
         const { status, data: session } = useSession({
           required: true,
           onUnauthenticated() {
-            router.push('/unauthorized?message=login required');
+            router.push("/unauthorized?message=The page you're trying to access has restricted access.Please login first");
           },
         });
         if (status === 'loading') {

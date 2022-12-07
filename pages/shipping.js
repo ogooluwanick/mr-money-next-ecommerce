@@ -143,4 +143,6 @@ const Shipping = () => {
   )
 }
 
+Shipping.auth=true
+
 export default Shipping
