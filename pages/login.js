@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
@@ -23,8 +22,6 @@ const LoginScreen = () => {
         const {data: session}= useSession()
 
         const [isSignup, setIsSignup] = useState(true)
-        const [formData, setFormData] = useState(initialState)
-        const [nameError, setNameError] = useState('')
 
 
     
@@ -44,7 +41,8 @@ const LoginScreen = () => {
                                         }
                                 )
                         }
-                } catch (error) {
+                } 
+                catch (error) {
                         toast.error( `${getError(error)}`,
                                 {     
                                         duration: 2000,

@@ -1339,11 +1339,119 @@ input:focus {
 
      .breadcrumb{
         flex: 1;
-        border-bottom: 2px double #324d67 !important; 
-        border-radius: 50px;
+        border-bottom: 2px solid #324d67 !important; 
         text-align: center;
         cursor: pointer;
      }
 
      .inactive-crum{ color: grey; border: grey;  cursor: not-allowed; opacity: 0.5;}
      .active-crum{color: #334d67; border: #324d67 ;}
+
+
+
+     .shipping-form{
+       padding:0 10rem;
+     }
+
+     .shipping-form h1{
+       color: #324d67;
+       padding: 2rem 0;
+       font-size: 1.5rem;
+     }
+     .shipping-form hr{
+        margin: 2rem 0;
+        height: 1px;
+        background-color: #ccc;
+        border: none;
+     }
+
+
+     .shipping-form-item{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        column-gap:  5rem;
+     }
+
+     .shipping-item-desc{
+        flex: 1;
+     }
+     .shipping-item-desc h2{
+        color:#324d67;
+        font-size: 1.2em;
+        margin-bottom: .2rem;
+     }
+     .shipping-item-desc p{
+        color: grey ;
+        font-size: 1rem;
+     }
+
+     .shipping-form-inputs{
+        flex: 2;
+     }
+
+     .shipping-form-input{
+        position: relative;
+
+        margin-bottom: 1rem;
+     }
+
+     .shipping-form-input:last-child{
+                margin-bottom: 0;
+        }       
+
+     .shipping-form-input label{
+        position: absolute;
+        text-transform: none;
+        font-size: .8rem;
+        color: grey !important;
+        left: 10px;
+        top: 5px;
+
+     }
+
+     .shipping-form-input input{
+                padding: 10px 10px;
+                padding-top: 22px;
+                padding-bottom: 6px;
+                background-color: #f7f7f8 ;
+                border-radius: 6px;
+                font-size: 1rem;
+                border: none;                
+}
+
+.shipping-btn-container{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 4rem;
+}
+
+.shipping-btn{
+        all: unset;
+        cursor: pointer;
+        border-radius: 15px;
+        padding: 15px 16px;
+        
+        border: none;
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        z-index:10 !important;
+        transition: all .3s cubic-bezier(0.23, 1, 0.320, 1);
+        background-color: #324d67;
+        color: white;
+}
+
+.shipping-btn:hover{
+        transform: scale(1.1);
+}
+
+     @media screen and (max-width:900px) {
+        .shipping-form{
+                background-color: pink;
+                padding:0 2rem;
+        }
+     }
