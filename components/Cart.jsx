@@ -77,7 +77,7 @@ const Cart = () => {
                         <div className="cart-bottom">
                                 <div className="total">
                                         <h3>Sub-total:</h3>
-                                        <h3>₦{cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0)}</h3>
+                                        <h3>₦{cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0).toLocaleString()}</h3>
                                 </div>
                                 <div className="btn-container">
                                         <button type='button' className='btn' onClick={()=>{ router.push("/login?redirect=/shipping") && (setShowCart(false))} }>

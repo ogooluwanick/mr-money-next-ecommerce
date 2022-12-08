@@ -146,15 +146,15 @@ const Shipping = () => {
                                                 <p>How will you like to pay</p>
                                         </div>
                                         <div className="shipping-form-inputs">
-                                                <div class="radio-tile-group">
+                                                <div className="radio-tile-group">
                                                         {
                                                                 [ {name:"paystack" , link:"/paystack_svg.svg"},{name:"stripe" , link:"/stripe_svg.svg"},].map((payment,index)=>(
-                                                                        <div class="input-container" key={index}>
-                                                                                <input  id={`${payment.name}`} class="radio-button" type="radio" name="paymentMethod"  
+                                                                        <div className="input-container" key={index}>
+                                                                                <input  id={`${payment.name}`} className="radio-button" type="radio" name="paymentMethod"  
                                                                                         checked={selectedPaymentMethod===payment.name}
                                                                                         onChange={()=>setSelectedPaymentMethod(payment.name)}
                                                                                 />
-                                                                                <div class="radio-tile">
+                                                                                <div className="radio-tile">
                                                                                         <img src={`${payment.link}`}
                                                                                         alt={`${payment.name} method`}
                                                                                         width="200px"

@@ -37,18 +37,18 @@ const SuggestionCarousel = ({similarProducts}) => {
         }, [ ])
         
   return (
-        <div class="banner-carousel__wrapper">
-                <div class="banner-carousel banner-carousel--square">
+        <div className="banner-carousel__wrapper">
+                <div className="banner-carousel banner-carousel--square">
                                 {
                                         similarProducts.map((product,i)=>(
                                                 <div product={product} key={i}>
-                                                        <Link href={`/product/${product.slug.current}`}>
-                                                                <div class="banner-carousel__figure ">
-                                                                        <div class="banner-carousel__img-container">
+                                                        <Link href={`/product/${product.slug}`}>
+                                                                <div className="banner-carousel__figure ">
+                                                                        <div className="banner-carousel__img-container">
                                                                                 <img  src={product.image&&product.image[0]} alt={`product ${product.name}`}   style={{display:"block"}}/>
                                                                         </div>
                                                                         <div className='product-name'>{product.name}</div>
-                                                                        <div className='product-price'>₦{product.price}</div>
+                                                                        <div className='product-price'>₦{product.price.toLocaleString()}</div>
                                                                 </div>
                                                         </Link>
                                                 </div>

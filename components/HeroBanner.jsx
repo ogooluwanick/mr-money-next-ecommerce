@@ -11,8 +11,8 @@ const HeroBanner = ({heroBanner}) => {
                 <img src={heroBanner.image} alt={`${heroBanner.SmallText} image`} className=' hero-banner-image' />
 
                 <div className="">
-                        <LINK href={`/product/${heroBanner.product}`}>
-                                <button type='button'>{heroBanner.buttonText}</button>
+                        <LINK href={`/product/${heroBanner.slug}`}>
+                                <button type='button' >{heroBanner.buttonText}</button>
                         </LINK>
                         <div className='desc'>
                                 <h5 >Description</h5>

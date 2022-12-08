@@ -31,7 +31,7 @@ export const getServerSideProps=async ({})=>{
                 
 
                 await db.connect();
-                const products= await AllProducts.find().lean();
+                const products= await AllProducts.find().sort({rating:-1}).limit(5*5).lean();
                 const banners= await Banner.find().lean();
 
 

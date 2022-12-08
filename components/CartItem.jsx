@@ -5,14 +5,14 @@ import {TiDeleteOutline} from "react-icons/ti"
 import { Store } from '../context/Store'
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/constants'
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 
 const CartItem = ({item}) => {
+        const {_id,name, price,slug,countInStock}=item
         const {state:{cart}, dispatch ,showCart} = useContext(Store)
-        let countInStock=5                                                                                                                        //Make  dyn later
 
-
-        const  itemInCart=cart.cartItems.find(x=>x._id===item._id)
+        const  itemInCart=cart.cartItems.find(x=>x._id===_id)
         const  itemInCartQty=itemInCart ? itemInCart.qty :0
         const [qty, setQty] = useState(0)
 
@@ -32,7 +32,7 @@ const CartItem = ({item}) => {
 
                 if (qty === 0 ) return toast.error("Select some 😢.")
 
-                dispatch({ type: CART_ADD_ITEM, payload:{_id,name, price,slug, image:product.image[0], qty} })
+                dispatch({ type: CART_ADD_ITEM, payload:{_id,name, price,slug, countInStock, image:product.image, qty} })
 
                 toast.success(`${qty} ${item.name} added to cart.`,
                 {     duration: 1500,
@@ -42,13 +42,14 @@ const CartItem = ({item}) => {
                 })
         }
 
-        const plusQty=()=>{
+        const plusQty=async()=>{
+                const { data } = await axios.get(`/api/products/${_id}`);
                 setQty(prev=>{
-                       if (countInStock > qty) {
+                       if (data.countInStock > qty) {
                                 return prev+1
                        }
                        else{
-                                toast.error(`Sorry. ${item.name} is out of stock 😢. Sorry. `,
+                                toast.error(`Sorry. ${item.name} is out of stock 😢.`,
                                         {     
                                                 duration: 1500,
                                                 style: { maxWidth: screen.width <800 ? "80vw":"40vw" }
@@ -72,13 +73,13 @@ const CartItem = ({item}) => {
         }, [itemInCart])
   return (
         <div className="product" >
-                <Link  href={`/product/${item.slug.current}`}>
+                <Link  href={`/product/${item.slug}`}>
                         <img className='cart-product-image' src={item?.image} alt={item?.name + " product image"} /> 
                 </Link>
                 <div className="item-desc">
                         <div className="flex top">
-                                <h5> <Link  href={`/product/${item.slug.current}`}>{item.name}</Link></h5>
-                                <h4>₦{item.price}</h4>
+                                <h5> <Link  href={`/product/${item.slug}`}>{item.name}</Link></h5>
+                                <h4>₦{item.price.toLocaleString()}</h4>
                         </div>
                         <div className="flex bottom">
                                 <div className="">

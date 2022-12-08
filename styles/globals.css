@@ -18,7 +18,7 @@ a {
 
 .main-container{
 max-width: 1400px; 
-min-height: 75vh;
+min-height: 72vh;
 margin: auto;
 width: 100%;
 
@@ -535,11 +535,11 @@ transition: transform .3s ease ;
 }
 
 .cart-bottom{
-  position: absolute;
-  bottom: 12px;
-  right: 5px;
-width: 100%;
-padding: 30px 65px;
+        position: absolute;
+        bottom: 12px;
+        right: 5px;
+        width: 100%;
+        padding: 0  65px 30px 65px;
 }
 
 
