@@ -169,7 +169,7 @@ export const getServerSideProps= async ({ params:{slug}}) => {
         await db.connect();
                 const product= await AllProducts.findOne({slug}).lean();
                 const category=product?.category
-                const similarProducts= await AllProducts.find({ category ,slug:{$ne: slug }}).sort({rating:-1}).limit(10).lean();            //show all products in the same category except the current page Product sort them by rating and show 10 max
+                const similarProducts= await AllProducts.find({ category:{ $in: category },slug:{$ne: slug }}).sort({rating:-1}).limit(10).lean();            //show all products in the same category or more except the current page Product sort them by rating and show 10 max
         await db.disconnect();
 
         return {props:{  product:product ? db.convertDocToObj(product) : null ,  similarProducts:similarProducts.map(db.convertDocToObj)  }}
