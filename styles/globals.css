@@ -1179,6 +1179,7 @@ margin-top: 160px;
 .input-group {
         position: relative;
         width: 100%;
+        display: flex;
 }
 
 .input-group input {
@@ -1194,6 +1195,20 @@ margin-top: 160px;
         border-top-left-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
         pointer-events: none;
+}
+#signup-password,#password{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+}
+.input-group .passwordShow {
+        position: relative;
+        height: 100%;
+        border-top-left-radius: 0rem;
+        border-bottom-left-radius: 0rem;
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        cursor: pointer !important;
+        pointer-events: all;
 }
 label {
         font-size: 1.3rem;
