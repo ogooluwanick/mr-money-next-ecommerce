@@ -21,7 +21,7 @@ const Shipping = () => {
         const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("")
 
 
-        const submitHandler = async ({ fullName,address, city,postcode, country, } ,e) => {
+        const submitHandler = async ({ fullName,address, city,postcode, country, phone } ,e) => {
                 e.preventDefault();
                 if(!selectedPaymentMethod){
                         return   toast.error( `Please select a payment method`,
@@ -32,8 +32,7 @@ const Shipping = () => {
                 }
                 dispatch({type:CART_SAVE_PAYMENT_METHOD, payload:selectedPaymentMethod  })
 
-                dispatch({type:CART_SAVE_SHIPPING_ADDRESS , payload:{fullName:fullName,address:address , city:city ,postcode:postcode , country:country }})
-                // router.push("payment")
+                dispatch({type:CART_SAVE_SHIPPING_ADDRESS , payload:{fullName:fullName,phone:phone, address:address , city:city ,postcode:postcode , country:country }})
         
                 toast.success( `Order details saved`,
                         {     
@@ -44,11 +43,12 @@ const Shipping = () => {
                 
                 setTimeout(() => {
                         router.push("/place_order")
-                }, 1000);
+                }, 800);
         }
 
         useEffect(() => {
                 !shippingAddress.fullName? setValue("fullName", session?.user?.name) :setValue("fullName",shippingAddress.fullName)
+                !shippingAddress.phone? setValue("phone", session?.user?.phone) :setValue("phone",shippingAddress.phone)
                 setValue("address",shippingAddress.address)
                 setValue("city",shippingAddress.city)
                 setValue("postcode",shippingAddress.postcode)
@@ -85,6 +85,18 @@ const Shipping = () => {
                                                                                 }
                                                         />
                                                         {errors.fullName?<div className="loginErrors">{errors.fullName.message}</div>:""}
+                                                </div>
+                                                <div className="shipping-form-input">
+                                                        <label htmlFor="phone">Phone no</label>
+                                                        <input id='phone' type="number" autoFocus   {
+                                                                                        ...register(      "phone",
+                                                                                                                {
+                                                                                                                        required:"Can I get your number? 😉",
+                                                                                                                        minLength:{value: 9 , message:"Your number should longer. 😭"}
+                                                                                                                })
+                                                                                }
+                                                        />
+                                                        {errors.phone?<div className="loginErrors">{errors.phone.message}</div>:""}
                                                 </div>
                                         </div>
                                </div>
@@ -158,7 +170,7 @@ const Shipping = () => {
                                                                                         <img src={`${payment.link}`}
                                                                                         alt={`${payment.name} method`}
                                                                                         width="200px"
-                                                                                        height="80px"/>
+                                                                                        height="60px"/>
                                                                                 </div>
                                                                         </div>
                                                                 ))

@@ -10,7 +10,7 @@ export const Store= createContext();
 const initialState={
         // cart: { cartItems: [] },
         cart: Cookies.get("cart")? JSON.parse(Cookies.get("cart")) :  {cartItems: [] },         //check for cart in cookie parse it and put in state, else put sameold  cartItems arr
-        shippingAddress: Cookies.get("shippingAddress")? JSON.parse(Cookies.get("shippingAddress")) :  {fullName:"",address:"", city:"" ,postcode:"", country:""},         //check for cart in cookie parse it and put in state, else put sameold  cartItems arr
+        shippingAddress: Cookies.get("shippingAddress")? JSON.parse(Cookies.get("shippingAddress")) :  {fullName:"",address:"", city:"" ,postcode:"", country:"",phone:""},         //check for cart in cookie parse it and put in state, else put sameold  cartItems arr
         paymentMethod: Cookies.get("paymentMethod")? JSON.parse(Cookies.get("paymentMethod")) :  "",         //check for cart in cookie parse it and put in state, else put sameold  cartItems arr
 }
 
