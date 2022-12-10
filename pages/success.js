@@ -30,6 +30,9 @@ const Success = () => {
                 <Link className='btn'  href={"/"}>
                         <button className='btn' type='button' width="1000px">Continue Shopping</button>
                 </Link>
+                <Link className='btn'  href={"/order-history"}>
+                        <button className='btn' type='button' width="1000px" style={{backgroundColor:"#324d67", marginTop:".8rem"}}>Your Orders</button>
+                </Link>
         </div>
         
     </div>

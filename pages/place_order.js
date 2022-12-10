@@ -46,7 +46,12 @@ const Place_order = () => {
                 }
                  catch (error) {
                         setLoading(false)
-                        toast.error( getError(error))
+                        toast.error( getError(error),
+                        {     duration: 1500,
+                                style: {
+                                maxWidth: screen.width <800 ? "80vw":"40vw"
+                              },
+                        })
                 }
         }
 

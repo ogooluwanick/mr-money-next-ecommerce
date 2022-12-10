@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 
 
-const CartItem = ({item}) => {
+const CartItem = ({item,showControls}) => {
         const {_id,name, price,slug,countInStock}=item
         const {state:{cart}, dispatch ,showCart} = useContext(Store)
 
@@ -76,15 +76,15 @@ const CartItem = ({item}) => {
                 <Link  href={`/product/${item.slug}`}>
                         <img className='cart-product-image' src={item?.image} alt={item?.name + " product image"} /> 
                 </Link>
-                <div className="item-desc">
-                        <div className="flex top">
+                <div className="item-desc"   style={{alignSelf: showControls? "center" : "center" }}>
+                        <div className="flex top" >
                                 <h5> <Link  href={`/product/${item.slug}`}>{item.name}</Link></h5>
                                 <h4>₦{item.price.toLocaleString()}</h4>
                         </div>
-                        <div className="flex bottom">
+                        <div className="flex bottom"  style={{display: showControls? "none" : "flex" }}>
                                 <div className="">
-                                        <p className="quantity-desc">
-                                                <span className="minus" onClick={()=>minusQty()}><AiOutlineMinus/></span>
+                                        <p className="quantity-desc" >
+                                                <span className="minus" onClick={()=>minusQty()} ><AiOutlineMinus/></span>
                                                 <span className="num" >{qty}</span>
                                                 <span className="plus" onClick={()=>plusQty()} ><AiOutlinePlus/></span>
                                         </p>

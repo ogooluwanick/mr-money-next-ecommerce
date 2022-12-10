@@ -489,7 +489,6 @@ text-align: end;
   gap: 30px;
   padding: 20px;
   justify-content: space-between;
-  
 }
 
 .product .cart-product-image{
@@ -1673,3 +1672,20 @@ input:focus {
                 background-color: #ccc;
                 border: none;
              }
+
+
+
+.order-condition{
+        margin-top: 0.2rem;
+        padding: 0.8rem;
+        border-radius: 8px;
+}
+
+.order-condition-success{
+        background-color:  rgb(220 252 231);
+        color: rgb(21 128 61);
+}
+.order-condition-error{
+        background-color:  rgb(254 226 226);
+        color: rgb(185 28 28);
+}
