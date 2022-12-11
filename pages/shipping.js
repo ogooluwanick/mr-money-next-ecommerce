@@ -45,7 +45,7 @@ const Shipping = () => {
                         router.push("/place_order")
                 }, 800);
         }
-
+        console.log(session?.user)
         useEffect(() => {
                 !shippingAddress.fullName? setValue("fullName", session?.user?.name) :setValue("fullName",shippingAddress.fullName)
                 !shippingAddress.phone? setValue("phone", session?.user?.phone) :setValue("phone",shippingAddress.phone)

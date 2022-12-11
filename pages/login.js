@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 import { getError } from '../lib/error';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import axios from "axios"
+
 
 
 const LoginScreen = () => {
@@ -25,8 +27,16 @@ const LoginScreen = () => {
                 setValue("name",getValues("name")?getValues("name"):"")
         }
 
-        const submitHandler = async ({ email, password }) => {
+
+        const submitHandler = async ({ email, password,name,phone }) => {
                 try {
+                        !isSignup &&(
+                                await axios.post("/api/auth/signup",{
+                                        email, password,name,phone
+                                })
+
+                        )
+                        
                         const result = await signIn('credentials', {
                                 redirect: false,
                                 email,
@@ -52,7 +62,6 @@ const LoginScreen = () => {
                 }
                 setValue("password","")
         }
-
 
         useEffect(() => {
                 if (session?.user){
@@ -182,7 +191,7 @@ const LoginScreen = () => {
                                                                 <span className="icon">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.176 1.322l2.844-1.322 4.041 7.89-2.724 1.341c-.538 1.259 2.159 6.289 3.297 6.372.09-.058 2.671-1.328 2.671-1.328l4.11 7.932s-2.764 1.354-2.854 1.396c-7.862 3.591-19.103-18.258-11.385-22.281zm1.929 1.274l-1.023.504c-5.294 2.762 4.177 21.185 9.648 18.686l.971-.474-2.271-4.383-1.026.5c-3.163 1.547-8.262-8.219-5.055-9.938l1.007-.497-2.251-4.398z"/></svg>                                                                
                                                                 </span>
-                                                                <input id="phone"  type="text" aria-describedby="passwordHelpBlock" placeholder='Phone No' {
+                                                                <input id="phone"  type="number" aria-describedby="passwordHelpBlock" placeholder='Phone No' {
                                                                                 ...register(      "phone",
                                                                                                         {
                                                                                                                 required:"Can I get your number? 😉",

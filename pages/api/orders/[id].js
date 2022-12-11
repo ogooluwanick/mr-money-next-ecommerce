@@ -17,8 +17,7 @@ const handler = async (req, res) => {
                 res.send(order);
         }
         else{
-                res.status(401)
-                throw new Error("This order is not found")
+                res.status(401).send({message:"This order is not found"});
         }
 };
 
