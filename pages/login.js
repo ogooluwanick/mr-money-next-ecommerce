@@ -195,7 +195,8 @@ const LoginScreen = () => {
                                                                                 ...register(      "phone",
                                                                                                         {
                                                                                                                 required:"Can I get your number? 😉",
-                                                                                                                minLength:{value: 9 , message:"Your number should longer. 😭"}
+                                                                                                                minLength:{value: 9 , message:"Your number should longer. 😭"},
+                                                                                                                pattern:{value: /^[0-9]+$/ , message:"Haha... invalid phone number. 😂"}
                                                                                                         })
                                                                                 }
                                                                 />
@@ -214,7 +215,7 @@ const LoginScreen = () => {
                                                                                 ...register(      "password",
                                                                                                         {
                                                                                                                 required:"Come on, Don't forget the password. 😭",
-                                                                                                                minLength:{value: 6 , message:"The password should longer. 😭"}
+                                                                                                                minLength:{value: 6 , message:"The password should longer. 😭"},
                                                                                                         })
                                                                         }
                                                                 /> 
