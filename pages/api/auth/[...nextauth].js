@@ -3,6 +3,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import User from '../../../models/User';
 import db from '../../../lib/db';
+import { escapeHtml, stripslashes } from '../../../lib/validationFuns';
 
 export default NextAuth({
   session: {
@@ -27,10 +28,10 @@ export default NextAuth({
       async authorize(credentials) {
 
                 await db.connect();
-                        const user = await User.findOne({ email: credentials.email });
+                        const user = await User.findOne({ email: stripslashes(escapeHtml(credentials.email)) });
                 await db.disconnect();
 
-                if (user && bcryptjs.compareSync(credentials.password, user.password)) {
+                if (user && bcryptjs.compareSync(escapeHtml(credentials.password), user.password)) {
                 return {
                         _id: user._id,
                         name: user.name,

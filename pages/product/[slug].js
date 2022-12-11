@@ -28,8 +28,8 @@ const ProductDetails = ({product,similarProducts}) => {
         const {state,dispatch,setShowCart ,showCart} = useContext(Store)
 
         const  itemInCart=state.cart.cartItems.find(x=>x._id===_id)
-        const  itemInCartQty=itemInCart ? itemInCart.qty :0
-        const [qty, setQty] = useState(0)
+        const  itemInCartQty=itemInCart ? itemInCart.qty :1
+        const [qty, setQty] = useState(1)
         
 
 
