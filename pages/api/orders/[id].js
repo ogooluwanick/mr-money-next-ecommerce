@@ -7,12 +7,19 @@ const handler = async (req, res) => {
         if (!session) {
                 return res.status(401).send('signin required');
         }
+
         let id=req.query.id
         await db.connect();
-                const order = await Order.findOne({id});
+                const order = await Order.findById(req.query.id);
         await db.disconnect();
 
-        res.send(order);
+        if (order){
+                res.send(order);
+        }
+        else{
+                res.status(401)
+                throw new Error("This order is not found")
+        }
 };
 
 export default handler;

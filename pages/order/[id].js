@@ -66,25 +66,20 @@ const Order = () => {
                 deliveredAt,
               } = order;
 
-        const fetchOrder = async () => {
-                try {
-                        dispatch({ type: FETCH_REQUEST });
-                        const { data } = await axios.get(`/api/orders/${router.query.id}`);
-                        dispatch({ type: FETCH_SUCCESS, payload: data });
-                } 
-                catch (err) {
-                        dispatch({ type: FETCH_FAIL, payload: getError(err) });
-                        toast.error(getError(err))
-                }
-        };
-
-        console.log(orderItems)
-
         useEffect(() => {
+                const fetchOrder = async () => {
+                  try {
+                    dispatch({ type: 'FETCH_REQUEST' });
+                    const { data } = await axios.get(`/api/orders/${router.query.id}`);
+                    dispatch({ type: 'FETCH_SUCCESS', payload: data });
+                  } catch (err) {
+                    dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+                  }
+                };
                 if (!order._id || (order._id && order._id !== router.query.id)) {
-                        fetchOrder();
+                  fetchOrder();
                 }
-        }, [router.query])
+        }, [order, router.query.id]);
         
   return (
     <div>
