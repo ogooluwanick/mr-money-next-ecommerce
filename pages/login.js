@@ -51,6 +51,8 @@ const LoginScreen = () => {
                                         }
                                 )
                         }
+
+                        
                 } 
                 catch (error) {
                         toast.error( `${getError(error)}`,
@@ -64,8 +66,8 @@ const LoginScreen = () => {
         }
 
         useEffect(() => {
-                if (session?.user){
-                        router.push( redirect || "/")
+                if (session?.user ){
+                        location.href=redirect? "/shipping" : "/"
                 }
         }, [router , redirect ,session])
         

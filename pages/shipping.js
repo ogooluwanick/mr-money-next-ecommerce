@@ -8,12 +8,13 @@ import toast from 'react-hot-toast';
 
 
 import Breadcrumbs from '../components/Breadcrums'
+import MotionWrap from '../components/MotionWrap';
 import { CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from '../constants/constants';
 import { Store } from '../context/Store';
 
 
 const Shipping = () => {
-        const { register, handleSubmit , formState:{errors}, getValues,setValue} = useForm();
+        const { register, handleSubmit , formState:{errors}, getValues,setValue,setFocus } = useForm();
         const router= useRouter()
         const {state:{cart,shippingAddress,paymentMethod}, dispatch ,showCart} = useContext(Store)
         const { status, data: session } = useSession();
@@ -45,7 +46,6 @@ const Shipping = () => {
                         router.push("/place_order")
                 }, 800);
         }
-        console.log(session?.user)
         useEffect(() => {
                 !shippingAddress.fullName? setValue("fullName", session?.user?.name) :setValue("fullName",shippingAddress.fullName)
                 !shippingAddress.phone? setValue("phone", session?.user?.phone) :setValue("phone",shippingAddress.phone)
@@ -53,6 +53,7 @@ const Shipping = () => {
                 setValue("city",shippingAddress.city)
                 setValue("postcode",shippingAddress.postcode)
                 setValue("country",shippingAddress.country)
+                setFocus("fullName")
           
                 setSelectedPaymentMethod(paymentMethod || "")
         }, [setValue,shippingAddress,paymentMethod])
@@ -63,6 +64,7 @@ const Shipping = () => {
                         <title>Shipping | Glams Haven</title>       
                 </Head>
                 <Breadcrumbs activeStep={1}/>
+                <MotionWrap>
                 <form onSubmit={handleSubmit(submitHandler)} className="shipping-form">
                         <h1>About your order</h1>
 
@@ -186,6 +188,7 @@ const Shipping = () => {
                                 </button>
                         </div>
                 </form>
+                </MotionWrap>
         </div>
   )
 }

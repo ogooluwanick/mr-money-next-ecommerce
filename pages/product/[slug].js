@@ -15,6 +15,7 @@ import axios from "axios"
 
 import db from '../../lib/db'
 import MotionWrap from '../../components/MotionWrap'
+import {motion} from "framer-motion"
 
 
 
@@ -90,7 +91,7 @@ const ProductDetails = ({product,similarProducts}) => {
        }, [itemInCart])
        
       
-        
+                
   return (
     <MotionWrap>
         <Head>
@@ -99,7 +100,7 @@ const ProductDetails = ({product,similarProducts}) => {
         <div className="product-detail-container">
                 <div className="image-container">
                         <div className="">
-                                <img src={image&&image[index]} className="product-detail-image"/>
+                                <motion.img initial={{x:-200,opacity:0}} animate={{x:0,opacity:1}} transition={{duration:0.2,delay:0.2}} src={image&&image[index]} className="product-detail-image"/>
                         </div>
                         <div className="small-images-container">
                                 {

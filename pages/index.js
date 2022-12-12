@@ -5,8 +5,15 @@ import {default as AllProducts}   from '../models/Product'
 import Banner  from '../models/Banner'
 import db from "../lib/db"
 import MotionWrap from '../components/MotionWrap'
+import {  motion} from "framer-motion";
+
 
 const Home = ({products,banners}) => {
+        const stagger = {
+                animate: {
+                        transition: { staggerChildren: 0.1  }
+                }
+        };
         
   return (
     <MotionWrap>
@@ -17,11 +24,11 @@ const Home = ({products,banners}) => {
                 <p>Speakers of many types</p>
         </div>
 
-        <div className="products-container">
+        <motion.div className="products-container"  initial='initial' whileInView='animate' exit={{ opacity: 0 }}  variants={stagger}>
                 {
-                        products?.map((product)=> <Product key={product._id} product={product}/>)
+                        products?.map((product,index)=> <Product key={product._id} product={product} index={index}/>)
                 }
-        </div>
+        </motion.div>
 
         <FooterBanner footerBanner={banners&& banners[1]}/>
     </MotionWrap>

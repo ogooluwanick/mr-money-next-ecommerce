@@ -9,6 +9,8 @@ import { Store } from '../context/Store'
 import { CART_REMOVE_ITEM } from '../constants/constants'
 import CartItem from './CartItem'
 import {  useRouter } from 'next/router'
+import {motion} from "framer-motion"
+import { useSession } from 'next-auth/react'
 // import { useStateContext } from '../context/StateContext'
 
 
@@ -16,6 +18,10 @@ import {  useRouter } from 'next/router'
 const Cart = () => {
         const router=useRouter()
         const {state:{cart}, dispatch, setShowCart ,showCart} = useContext(Store)
+        const {data: session}= useSession()
+
+     
+
 
         const removeItem=(product)=>{
                dispatch({type: CART_REMOVE_ITEM ,payload:{product}})
@@ -44,7 +50,7 @@ const Cart = () => {
         
   return (
     <div className='cart-wrapper' >
-        <div className="cart-container">
+        <motion.div initial={{ x: "100%" }}   animate={{x: 0 }}   exit={{x: "100%" }}     transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}  className="cart-container">
                 <button type='button' className='cart-heading' onClick={()=>setShowCart(false)}>
                         <AiOutlineLeft/>
                         <span className='heading'>Your Cart</span>
@@ -73,21 +79,21 @@ const Cart = () => {
                         }
                 </div>
 
-                {/*cartItems.length>=1*/ true && (
+                {!cart.cartItems.length==0 && (
                         <div className="cart-bottom">
                                 <div className="total">
                                         <h3>Sub-total:</h3>
                                         <h3>₦{cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0).toLocaleString()}</h3>
                                 </div>
                                 <div className="btn-container">
-                                        <button type='button' className='btn' onClick={()=>{ router.push("/login?redirect=/shipping") && (setShowCart(false))} }>
+                                        <button type='button' className='btn' onClick={()=>{ router.push(session?.user? "/shipping":"/login?redirect=/shipping") && (setShowCart(false))} }>
                                                 Check Out
                                         </button>  
                                         {/* <Paystack totalPrice={cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0)}/> */}
                                 </div>
                         </div>
                 )}
-        </div>
+        </motion.div>
     </div>
   )
 }

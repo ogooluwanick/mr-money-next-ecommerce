@@ -113,7 +113,7 @@ const Navbar = () => {
                         }
                 </button>
         </div>
-        {showCart && <Cart />}
+        {showCart?  <Cart /> : ""}
     </div>
   )
 }
