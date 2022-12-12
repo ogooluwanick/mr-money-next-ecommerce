@@ -4,11 +4,12 @@ import {client} from "../lib/client"
 import {default as AllProducts}   from '../models/Product'
 import Banner  from '../models/Banner'
 import db from "../lib/db"
+import MotionWrap from '../components/MotionWrap'
 
 const Home = ({products,banners}) => {
         
   return (
-    <>
+    <MotionWrap>
         <HeroBanner heroBanner={banners.length?banners[0]:""}/>
 
         <div className="products-heading">
@@ -23,7 +24,7 @@ const Home = ({products,banners}) => {
         </div>
 
         <FooterBanner footerBanner={banners&& banners[1]}/>
-    </>
+    </MotionWrap>
   )
 }
 

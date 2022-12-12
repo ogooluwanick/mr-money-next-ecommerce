@@ -14,6 +14,7 @@ import  ModalDialog  from '../../components/ModalDialog';
 import axios from "axios"
 
 import db from '../../lib/db'
+import MotionWrap from '../../components/MotionWrap'
 
 
 
@@ -91,7 +92,7 @@ const ProductDetails = ({product,similarProducts}) => {
       
         
   return (
-    <div>
+    <MotionWrap>
         <Head>
                 <title>{product.name} | Glam's Haven</title>
         </Head>
@@ -137,7 +138,7 @@ const ProductDetails = ({product,similarProducts}) => {
                 <h2>You may also like</h2>
                 <SuggestionCarousel similarProducts={similarProducts}/>
         </div>
-    </div>
+    </MotionWrap>
   )
 }
 
