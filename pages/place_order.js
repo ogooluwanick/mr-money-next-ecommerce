@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import { AiOutlineShopping } from 'react-icons/ai'
 import Breadcrumbs from '../components/Breadcrums'
 import CartItem from '../components/CartItem'
+import MotionWrap from '../components/MotionWrap'
 import { CART_EMPTY } from '../constants/constants'
 import { Store } from '../context/Store'
 import { getError } from '../lib/error';
@@ -67,6 +68,7 @@ const Place_order = () => {
   return (
     <div >
                 <Breadcrumbs activeStep={2}/>
+                <MotionWrap>
                 <div  className='place-order-screen'>
                         <h1>Place your order</h1>
 
@@ -163,6 +165,7 @@ const Place_order = () => {
                 }
 
                 </div>
+                </MotionWrap>
     </div>
   )
 }

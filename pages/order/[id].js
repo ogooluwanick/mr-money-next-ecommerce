@@ -8,6 +8,9 @@ import { DELIVER_FAIL, DELIVER_REQUEST, DELIVER_RESET, DELIVER_SUCCESS, FETCH_FA
 import { Store } from '../../context/Store'
 import { getError } from '../../lib/error';
 import moment from "moment"
+import MotionWrap from '../../components/MotionWrap';
+import Paystack from '../../components/Paystack'
+
 
 
 function reducer(state, action) {
@@ -90,6 +93,7 @@ const Order = () => {
                                 error?(<div style={{color:"red"}}>{error}</div>)
                                 :
                                 (
+                                        <MotionWrap>
                                         <div className='place-order-container'>
                                                 <div className='place-order-details '>
                                                         <div className='place-order-card'>
@@ -173,9 +177,12 @@ const Order = () => {
                                                                         <p>₦{totalPrice?.toLocaleString()}</p>
                                                                 </div>
                                                         </div>
-                                                        <div><button disabled={loading} onClick={()=>placeOrderHandler()}>{loading?"Loading...":"Confirm Order"}</button></div>
+                                                        {/* <div><button disabled={loading} onClick={()=>placeOrderHandler()}>{loading?"Loading...":"Confirm Order"}</button></div> */}
+                                                        <Paystack   loading={loading}  totalPrice={totalPrice}/>      
                                                 </div>
                                         </div>
+                                        </MotionWrap>
+
                                 )
                         }
                 </div>

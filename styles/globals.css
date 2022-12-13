@@ -1106,11 +1106,30 @@ margin-top: 160px;
         align-items: center;
 }
 
+.paystackBtn-container{
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 15px;
+        font-size: 20px;
+        margin-top: 10px;
+        margin-top: 40px;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+
+
+}
+
 .paystackBtn{
         display: flex;
         gap: 5px;
         justify-content: center;
         align-items: center;
+
+
+        transition: all .3s ease-in-out;
+
+
 }
 
 
@@ -1602,6 +1621,10 @@ input:focus {
 
                 .place-order-container{
                         flex-direction: column;
+                }
+
+                .place-order-screen h1{
+                        font-size: 1.3rem;
                 }
         }
 

@@ -4,7 +4,6 @@ import {AiOutlineMinus,AiOutlinePlus,AiOutlineLeft,AiOutlineShopping} from "reac
 import {TiDeleteOutline} from "react-icons/ti"
 import {toast} from "react-hot-toast"
 import getStripe from '../lib/getStripe'
-import Paystack from './Paystack'
 import { Store } from '../context/Store'
 import { CART_REMOVE_ITEM } from '../constants/constants'
 import CartItem from './CartItem'
@@ -89,7 +88,6 @@ const Cart = () => {
                                         <button type='button' className='btn' onClick={()=>{ router.push(session?.user? "/shipping":"/login?redirect=/shipping") && (setShowCart(false))} }>
                                                 Check Out
                                         </button>  
-                                        {/* <Paystack totalPrice={cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0)}/> */}
                                 </div>
                         </div>
                 )}
