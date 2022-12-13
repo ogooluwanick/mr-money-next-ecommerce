@@ -27,25 +27,7 @@ const Cart = () => {
         }
 
 
-        // const handleStripeCheckout = async () => {
-        //         const stripe = await getStripe();
-        //         const response = await fetch('/api/stripe', {
-        //           method: 'POST',
-        //           headers: {
-        //             'Content-Type': 'application/json',
-        //           },
-        //           body: JSON.stringify(cartItems),
-        //         });
-            
-        //         if(response.statusCode === 500) return;
-                
-        //         const data = await response.json();
-
-            
-        //         toast.loading('Redirecting...');
-            
-        //         stripe.redirectToCheckout({ sessionId: data.id });
-        //       }
+        
         
   return (
     <div className='cart-wrapper' >

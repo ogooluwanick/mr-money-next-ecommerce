@@ -10,6 +10,7 @@ import { getError } from '../../lib/error';
 import moment from "moment"
 import MotionWrap from '../../components/MotionWrap';
 import Paystack from '../../components/Paystack'
+import Stripe from '../../components/Stripe';
 
 
 
@@ -178,7 +179,8 @@ const Order = () => {
                                                                 </div>
                                                         </div>
                                                         {/* <div><button disabled={loading} onClick={()=>placeOrderHandler()}>{loading?"Loading...":"Confirm Order"}</button></div> */}
-                                                        <Paystack   loading={loading}  totalPrice={totalPrice}/>      
+                                                        <Paystack   loading={loading}  totalPrice={totalPrice}/>    
+                                                        <Stripe   loading={loading}  orderItems={orderItems}/>    
                                                 </div>
                                         </div>
                                         </MotionWrap>

@@ -24,6 +24,7 @@ const Paystack = ({totalPrice,loading}) => {
         const paystackOnCloseHandler = () => {
                 // implementation for  whatever you want to do when the Paystack dialog closed.
                 console.log('closed')
+                route.push("/canceled")
               }
             
         const paystackConfig = {

@@ -17,7 +17,7 @@ export default async function handler(req, res) {
           { shipping_rate: 'shr_1LtHBMEHr4kN1sdDNUGjXD0p' },
         ],
         line_items: req.body.map((item) => {
-          const img = item.image[0].asset._ref;
+          const img = item.image;
           const newImage = img.replace('image-', 'https://cdn.sanity.io/images/m9we94wo/production/').replace('-webp', '.webp');
 
           return {
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
               currency: 'usd',
               product_data: { 
                 name: item.name,
-                images: [newImage],
+                images: [`${process.env.NEXTAUTH_URL}/${img}`],
               },
               unit_amount: item.price * 100,
             },
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
               enabled:true,
               minimum: 1,
             },
-            quantity: item.quantity
+            quantity: item.qty
           }
         }),
         success_url: `${req.headers.origin}/success`,
