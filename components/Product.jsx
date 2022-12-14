@@ -32,7 +32,7 @@ const Product = ({product:{_id,name,image,slug,price}}) => {
     <div>
         <LINK href={`/product/${slug}`}>
               <motion.div className ="product-card" variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} >
-                        <motion.img whileInView={{opacity:[0,1 ],x:[60,0]}} transition={{duration:0.3}}   className='product-image' src={image&&image[0]} alt={`product ${name}`}  width="250px" height="250px"/>
+                        <motion.img whileInView={{opacity:[0,1 ],x:[60,0]}} transition={{duration:0.5}}   className='product-image' src={image&&image[0]} alt={`product ${name}`}  width="250px" height="250px"/>
                         <div className="product-name">{name}</div>
                         <div className="product-price">₦{price.toLocaleString()}</div>
               </motion.div>

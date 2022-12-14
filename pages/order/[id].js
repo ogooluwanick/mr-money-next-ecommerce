@@ -15,6 +15,7 @@ import Stripe from '../../components/Stripe';
 
 
 function reducer(state, action) {
+
         switch (action.type) {
                 case  FETCH_REQUEST:
                         return { ...state, loading: true, error: '' };
@@ -80,10 +81,13 @@ const Order = () => {
                     dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
                   }
                 };
-                if (!order._id || (order._id && order._id !== router.query.id)) {
+                if (!order._id || successPay || (order._id && order._id !== router.query.id)) {
                   fetchOrder();
+                   if (successPay){
+                        dispatch({type:PAY_RESET})
+                   }
                 }
-        }, [order, router.query.id]);
+        }, [order, router.query.id,successPay]);
         
   return (
     <div>
@@ -116,7 +120,7 @@ const Order = () => {
                                                                 </p>
                                                                 <div className={`order-condition ${isDelivered?"order-condition-success":"order-condition-error"}`} style={{marginTop:".6rem"}}>
                                                                         {
-                                                                                isDelivered? `Delivered at ${moment(order.DeliveredAt).format('Do [of] MMMM, YYYY [at] h:mma')}` :  "Not delivered"
+                                                                                isDelivered? `Delivered on the ${moment(order.deliveredAt).format('Do [of] MMMM, YYYY [at] h:mma')}` :  "Not delivered"
                                                                         }
                                                                 </div>
                                                                 <hr />
@@ -141,7 +145,7 @@ const Order = () => {
 
                                                                 <div className={`order-condition ${isPaid?"order-condition-success":"order-condition-error"}`}>
                                                                         {
-                                                                                isPaid? ` Paid at ${moment(order.isPaid).format('Do [of] MMMM, YYYY [at] h:mma')}` :  "Not paid"
+                                                                                isPaid? ` Paid on the ${moment(order.paidAt).format('Do [of] MMMM, YYYY [at] h:mma')}` :  "Not paid"
                                                                         }
                                                                 </div>
                                                                 </div>
@@ -179,8 +183,19 @@ const Order = () => {
                                                                 </div>
                                                         </div>
                                                         {/* <div><button disabled={loading} onClick={()=>placeOrderHandler()}>{loading?"Loading...":"Confirm Order"}</button></div> */}
-                                                        <Paystack   loading={loading}  totalPrice={totalPrice}/>    
-                                                        <Stripe   loading={loading}  orderItems={orderItems}/>    
+                                                        {
+                                                                !isPaid ? 
+                                                                        (
+                                                                                paymentMethod==="paystack" ?
+                                                                               <Paystack id={router.query.id}   loading={loading}  totalPrice={totalPrice} dispatch={dispatch} successPay={successPay}/>    
+                                                                               :
+                                                                               <Stripe   loading={loading}  orderItems={orderItems}/>    
+                                                                               
+                                                                        )
+                                                                : ""
+                                                        }
+                                                        
+                                                                
                                                 </div>
                                         </div>
                                         </MotionWrap>

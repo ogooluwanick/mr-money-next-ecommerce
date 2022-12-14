@@ -79,6 +79,7 @@ const CartItem = ({item,showControls}) => {
                 <div className="item-desc"   style={{alignSelf: showControls? "center" : "center" }}>
                         <div className="flex top" >
                                 <h5> <Link  href={`/product/${item.slug}`}>{item.name}</Link></h5>
+                                <h4 className='order-qty-display' style={{display: !showControls? "none" : "flex" }}>{`${item.qty}`}</h4>
                                 <h4>₦{item.price.toLocaleString()}</h4>
                         </div>
                         <div className="flex bottom"  style={{display: showControls? "none" : "flex" }}>

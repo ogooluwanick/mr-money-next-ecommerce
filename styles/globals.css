@@ -1642,6 +1642,14 @@ input:focus {
                 padding: .4rem 0;
         }
 
+        .order-qty-display{
+                min-width: fit-content;
+                border: 1px solid gray;
+        
+                font-size: 18px;
+                padding: 8px 15px;
+        }
+
         .place-order-summary button{
                 font-size: 1.2rem;
                 width: 100%;

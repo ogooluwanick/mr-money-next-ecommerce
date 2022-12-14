@@ -42,6 +42,12 @@ const Place_order = () => {
                         });
                         setLoading(false);
                         dispatch({type:CART_EMPTY})
+                        toast.success( "Order Confirmed",
+                        {     duration: 1500,
+                                style: {
+                                maxWidth: screen.width <800 ? "80vw":"40vw"
+                              },
+                        })
                         Cookies.set("cart",JSON.stringify({...cart,cartItems:[]}))
                         router.push(`/order/${data._id}`);
                 }

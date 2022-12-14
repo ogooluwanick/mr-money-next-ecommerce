@@ -4,27 +4,34 @@ import { useRouter } from "next/router"
 import { PaystackButton } from 'react-paystack';
 import { useSession } from 'next-auth/react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 // import { useStateContext } from '../context/StateContext';
 
 
-const Paystack = ({totalPrice,loading}) => {
+const Paystack = ({totalPrice,loading,dispatch,id}) => {
         const route=useRouter()
         const { status, data: session } = useSession();
 
         
 
 
-        const paystackSuccessHandler = (paymentResult) => {
-                console.log(paymentResult);
-                route.push("/success")
+        const paystackSuccessHandler =async (paymentResult) => {
+                await axios.post(`/api/orders/${id}/pay`,{paymentResult})
                 // dispatch(payOrder(id,paymentResult))
+                route.push("/success")
 
               };
 
         const paystackOnCloseHandler = () => {
                 // implementation for  whatever you want to do when the Paystack dialog closed.
-                console.log('closed')
-                route.push("/canceled")
+                        toast.error( "Payment failed. Kindly try again! 😢",
+                                {     duration: 2500,
+                                        style: {
+                                                maxWidth: screen.width <800 ? "80vw":"40vw"
+                                        }
+                                }
+                        )
               }
             
         const paystackConfig = {
@@ -48,7 +55,7 @@ const Paystack = ({totalPrice,loading}) => {
                                                         {...paystackConfig}
                                                         onSuccess={(reference)=>paystackSuccessHandler(reference)}   
                                                         onClose= {paystackOnCloseHandler} 
-                                                        />
+                />
     </motion.div>
   )
 }

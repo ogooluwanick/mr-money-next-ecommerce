@@ -22,7 +22,17 @@ const orderSchema = new mongoose.Schema(
                 country: { type: String, required: true },
         },
         paymentMethod: { type: String, required: true },
-        paymentResult: { id: String, status: String, email_address: String },
+        paymentResult:    { 
+                id:String,
+                reference:String,
+                status:String,
+                update_time:String,
+                email:String,
+                transaction:String,
+                message:String,
+                staff:String,
+                staffID:String
+        },
         itemsPrice: { type: Number, required: true },
         shippingPrice: { type: Number, required: true },
         totalPrice: { type: Number, required: true },
