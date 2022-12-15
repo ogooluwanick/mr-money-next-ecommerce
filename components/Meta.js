@@ -18,11 +18,11 @@ const Meta = ({title,keywords,description,image}) => {
                 <meta property="article:publisher" content="Glam&apos;s Haven" />
                 <meta property="article:section" content="Women's Clothing" />
                 <meta property="article:tag" content="Ecommerce, Women's Clothing store, Glam's Haven" />
+                <meta property="twitter:image" content={image} />
                 <meta property="og:image" content={image}/>
                 <meta property="og:image:width" content="1280" />
                 <meta property="og:image:height" content="640" />
                 <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:image" content={image} />
                 <meta property="twitter:site" content="@dhouse_of_glam" />
         </Head>
   )

@@ -94,7 +94,7 @@ const ProductDetails = ({product,similarProducts}) => {
                 
   return (
     <MotionWrap>
-        <Meta title={`${name} | Glam's Haven`} keywords={`${[ ...category , ...brand ,name] }` }  description={details} image={image[0]} />
+        <Meta title={`${name} | Glam's Haven`} keywords={`${[ ...category , ...brand ,name] }` }  description={details}  image={image[0]} />
         <div className="product-detail-container">
                 <div className="image-container">
                         <div className="">
