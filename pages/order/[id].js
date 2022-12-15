@@ -117,7 +117,7 @@ const Order = () => {
                                                                 <h2>Shipping Adress</h2>
                                                                 <p style={{textTransform:"capitalize"}} >   
                                                                         {
-                                                                                `${shippingAddress?.address}, ${shippingAddress?.city}, ${shippingAddress?.postcode}, ${shippingAddress?.country}`
+                                                                                `${shippingAddress?.address}, ${shippingAddress?.city}, ${shippingAddress?.postcode?  `${shippingAddress?.postcode},` :""} ${shippingAddress?.country}`
                                                                         }
                                                                 </p>
                                                                 <div className={`order-condition ${isDelivered?"order-condition-success":"order-condition-error"}`} style={{marginTop:".6rem"}}>
