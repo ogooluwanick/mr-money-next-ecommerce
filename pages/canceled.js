@@ -18,7 +18,7 @@ const Success = () => {
                 <p className="success-icon">
                         <BsBagCheckFill/>
                 </p>
-                <h2>Thank you for your order!</h2>
+                <h2>Sorry but your Payment didn't go through!</h2>
                 <p className="email-msg">Check your email for your receipt</p>
                 <p className="description">
                         If you have any questions please email

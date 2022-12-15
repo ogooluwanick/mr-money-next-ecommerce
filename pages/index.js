@@ -1,11 +1,10 @@
 import React from 'react'
 import { Product,FooterBanner,HeroBanner } from '../components/index'
-import {client} from "../lib/client"
 import {default as AllProducts}   from '../models/Product'
 import Banner  from '../models/Banner'
 import db from "../lib/db"
 import MotionWrap from '../components/MotionWrap'
-import {  motion} from "framer-motion";
+import {motion} from "framer-motion";
 
 
 const Home = ({products,banners}) => {
