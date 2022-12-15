@@ -11,6 +11,7 @@ import moment from "moment"
 import MotionWrap from '../../components/MotionWrap';
 import Paystack from '../../components/Paystack'
 import Stripe from '../../components/Stripe';
+import { Meta } from '../../components';
 
 
 
@@ -91,6 +92,7 @@ const Order = () => {
         
   return (
     <div>
+        <Meta title={`Order | Glams Haven`}/>
         <div  className='place-order-screen'>
                         <h1>Order {router.query.id}</h1>
                         {

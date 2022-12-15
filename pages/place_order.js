@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { AiOutlineShopping } from 'react-icons/ai'
+import { Meta } from '../components'
 import Breadcrumbs from '../components/Breadcrums'
 import CartItem from '../components/CartItem'
 import MotionWrap from '../components/MotionWrap'
@@ -73,6 +74,7 @@ const Place_order = () => {
 
   return (
     <div >
+        <Meta title={"Place order | Glams Haven"}/>
                 <Breadcrumbs activeStep={2}/>
                 <MotionWrap>
                 <div  className='place-order-screen'>

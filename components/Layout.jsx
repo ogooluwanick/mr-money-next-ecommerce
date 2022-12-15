@@ -2,14 +2,12 @@ import React, { Children } from 'react'
 import Head from "next/head"
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Meta from './Meta'
 
 const Layout = ({children}) => {
   return (
     <div className='layout'>
-        <Head>
-                <title>Glam's Haven</title>
-                <link rel="icon" href="glam_icon.png" />
-        </Head>
+        <Meta/>
         <header>
                 <Navbar/>
         </header>

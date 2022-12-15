@@ -32,7 +32,7 @@ Meta.defaultProps={
         title:"Glam's Haven",
         keywords:"online store, ecommerce website,shopping cart, Glam, Haven, Glams Haven, Womens clothing",
         description:"Glam haven is a curated online boutique based in Lagos, Nigeria. We offer the latest trends at a great price. Shop with us today and get Free Shipping on orders of ₦30k or more!.",
-        image:"https://images.pexels.com/photos/13085604/pexels-photo-13085604.jpeg?auto=compress&cs=tinysrgb&w=800"
+        image:"/siteimg.png"
 }
 
 export default Meta
