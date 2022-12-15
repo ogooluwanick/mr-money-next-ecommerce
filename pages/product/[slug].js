@@ -91,11 +91,10 @@ const ProductDetails = ({product,similarProducts}) => {
          
        }, [itemInCart])
        
-      
                 
   return (
     <MotionWrap>
-        <Meta title={`${name} | Glam's Haven`} keywords={`${[ ...category , ...brand ,name] }` }  description={details} image={image&&image[index]} />
+        <Meta title={`${name} | Glam's Haven`} keywords={`${[ ...category , ...brand ,name] }` }  description={details} image={image[index]} />
         <div className="product-detail-container">
                 <div className="image-container">
                         <div className="">
