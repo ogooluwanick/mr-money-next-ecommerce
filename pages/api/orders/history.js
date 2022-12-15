@@ -11,7 +11,7 @@ const handler = async (req, res) => {
         const { user } = session;
 
         await db.connect();
-                const orders = await Order.find({ user: user._id });
+                const orders = await Order.find({ user: user._id }).sort({createdAt:-1}).lean();
         await db.disconnect();
         res.send(orders);
 };

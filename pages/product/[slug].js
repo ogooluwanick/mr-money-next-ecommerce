@@ -16,6 +16,7 @@ import axios from "axios"
 import db from '../../lib/db'
 import MotionWrap from '../../components/MotionWrap'
 import {motion} from "framer-motion"
+import Meta from '../../components/Meta'
 
 
 
@@ -24,7 +25,7 @@ const ProductDetails = ({product,similarProducts}) => {
 
         if(!product) return <div>No such Product I will create a model Here later</div>                                       //Incase Product is null
 
-        const {name,image,_id,slug,price,details,rating,numReviews,countInStock}=product
+        const {name,image,_id,slug,price,details,rating,numReviews,countInStock,category,brand}=product
         
         const [index, setIndex] = useState(0)
         const {state,dispatch,setShowCart ,showCart} = useContext(Store)
@@ -94,9 +95,7 @@ const ProductDetails = ({product,similarProducts}) => {
                 
   return (
     <MotionWrap>
-        <Head>
-                <title>{product.name} | Glam's Haven</title>
-        </Head>
+        <Meta title={`${name} | Glam's Haven`} keywords={`${[ ...category , ...brand ,name] }` }  description={details} image={image&&image[index]} />
         <div className="product-detail-container">
                 <div className="image-container">
                         <div className="">

@@ -69,9 +69,9 @@ export default function OrderList() {
                 width: 150 ,
                 renderCell:(param)=>{
                         return (
-                                <div style={{marginLeft:".8rem"}}>
+                                <Link href={"/order/"+param.row._id} style={{marginLeft:".8rem"}}>
                                         {param.row._id.substring(16,24)}
-                                </div>
+                                </Link>
                         )
                 }
         },
@@ -208,6 +208,9 @@ export default function OrderList() {
                             pagination
 
                             rowHeight={70}
+
+                            initialState={{ pinnedColumns: { left: ['name'], right: ['actions'] } }}
+
                         />
                     </div>
                 </MotionWrap>
