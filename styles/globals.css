@@ -1731,3 +1731,64 @@ input:focus {
         background-color:  rgb(254 226 226);
         color: rgb(185 28 28);
 }
+
+
+.order-history-images{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.order-history-images   img{
+        cursor: pointer;
+}
+
+.order-history-images   img{
+        border-radius: 50%;
+        background-color: #ebebeb;
+        border: 1px solid white;
+}
+
+.order-history-images img:not(:first-child){
+        margin-left: -26px;
+}
+
+.order-history-redcross{
+        width: 100%;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.order-history-actions{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+}
+
+.order-history-actions svg{
+        cursor: pointer;
+        transition: all .3s ease;
+}
+
+.productListViewIcon{
+        color:  rgb(21 128 61);
+        height: 200px;
+}
+
+.productListDeleteIcon{
+        color:  rgb(185 28 28);
+        height: 200px;
+}
+.productListViewIcon:hover{
+        color: rgb(220 252 231);
+        height: 200px;
+}
+
+.productListDeleteIcon:hover{
+        color: rgb(254 226 226);
+        height: 200px;
+}

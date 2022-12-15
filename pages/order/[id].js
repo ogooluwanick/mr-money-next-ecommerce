@@ -190,7 +190,6 @@ const Order = () => {
                                                                                <Paystack id={router.query.id}   loading={loading}  totalPrice={totalPrice} dispatch={dispatch} successPay={successPay}/>    
                                                                                :
                                                                                <Stripe   loading={loading}  orderItems={orderItems}/>    
-                                                                               
                                                                         )
                                                                 : ""
                                                         }
