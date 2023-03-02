@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {BsBagCheckFill} from "react-icons/bs"
-// import { useStateContext } from '../context/StateContext'
-import { Fireworks } from '../lib/Fireworks'
+import { useStateContext } from '../context/StateContext'
+import { Fireworks } from '../lib/utililes'
 
 const Success = () => {
-        // const {setCartItems,setTotalPrice,setTotalQty}=useStateContext()
-        // const [order, setOrder] = useState(null)
+        const {setCartItems,setTotalPrice,setTotalQty}=useStateContext()
+        const [order, setOrder] = useState(null)
 
         useEffect(() => {
-              
+              localStorage.clear()
+              setCartItems([])
+              setTotalPrice(0)
+              setTotalQty(0)
               Fireworks()
           
         }, [])
@@ -18,7 +21,7 @@ const Success = () => {
     <div className='success-wrapper'>
         
         <div className="success">
-                <p className="success-icon">
+                <p className="icon">
                         <BsBagCheckFill/>
                 </p>
                 <h2>Thank you for your order!</h2>
@@ -29,9 +32,6 @@ const Success = () => {
                 </p>
                 <Link className='btn'  href={"/"}>
                         <button className='btn' type='button' width="1000px">Continue Shopping</button>
-                </Link>
-                <Link className='btn'  href={"/order_history"}>
-                        <button className='btn' type='button' width="1000px" style={{backgroundColor:"#324d67", marginTop:".8rem"}}>Your Orders</button>
                 </Link>
         </div>
         

@@ -1,45 +1,49 @@
-import React, { useContext } from 'react'
+import React, { useRef } from 'react'
 import Link from 'next/link'
 import {AiOutlineMinus,AiOutlinePlus,AiOutlineLeft,AiOutlineShopping} from "react-icons/ai"
 import {TiDeleteOutline} from "react-icons/ti"
 import {toast} from "react-hot-toast"
+import {useStateContext} from "../context/StateContext"
+import {urlFor} from "../lib/client"
 import getStripe from '../lib/getStripe'
-import { Store } from '../context/Store'
-import { CART_REMOVE_ITEM } from '../constants/constants'
-import CartItem from './CartItem'
-import {  useRouter } from 'next/router'
-import {motion} from "framer-motion"
-import { useSession } from 'next-auth/react'
-// import { useStateContext } from '../context/StateContext'
 
 
 
 const Cart = () => {
-        const router=useRouter()
-        const {state:{cart}, dispatch, setShowCart ,showCart} = useContext(Store)
-        const {data: session}= useSession()
+        const cartRef=useRef()
+        const {cartItems,totalPrice,totalQty,setShowCart,toggleCartItemQty,removeItem}=useStateContext()
 
-     
-
-
-        const removeItem=(product)=>{
-               dispatch({type: CART_REMOVE_ITEM ,payload:{product}})
-        }
-
-
-        
+        const handleStripeCheckout = async () => {
+                const stripe = await getStripe();
+                const response = await fetch('/api/stripe', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(cartItems),
+                });
+            
+                if(response.statusCode === 500) return;
+                
+                const data = await response.json();
+                console.log("HERE")
+            
+                toast.loading('Redirecting...');
+            
+                stripe.redirectToCheckout({ sessionId: data.id });
+              }
         
   return (
-    <div className='cart-wrapper' >
-        <motion.div initial={{ x: "100%" }}   animate={{x: 0 }}   exit={{x: "100%" }}     transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}  className="cart-container">
+    <div className='cart-wrapper' ref={cartRef}>
+        <div className="cart-container">
                 <button type='button' className='cart-heading' onClick={()=>setShowCart(false)}>
                         <AiOutlineLeft/>
                         <span className='heading'>Your Cart</span>
-                        <span className='cart-num-items'>( {cart.cartItems.reduce((a, c)=> a + c.qty , 0)} items)</span>
+                        <span className='cart-num-items'>({totalQty} items)</span>
                 </button>
 
                 {
-                        cart.cartItems.length<1 && (
+                        cartItems.length<1 && (
                                 <div className='empty-cart'>
                                         <AiOutlineShopping    size={150}/>
                                         <h3>Your shopping bag is empty</h3>
@@ -54,26 +58,46 @@ const Cart = () => {
 
                 <div className="product-container">
                         {
-                                cart.cartItems.length>=1 && cart.cartItems.map((item)=>(
-                                        <CartItem item={item} key={item._id}/>
+                                cartItems.length>=1 && cartItems.map((item)=>(
+                                        <div className="product" key={item._id}>
+                                                <img className='cart-product-image' src={urlFor(item?.image[0])} alt={item?.name + " product image"} /> 
+                                                <div className="item-desc">
+                                                        <div className="flex top">
+                                                                <h5>{item.name}</h5>
+                                                                <h4>₦{item.price}</h4>
+                                                        </div>
+                                                        <div className="flex bottom">
+                                                                <div className="">
+                                                                        <p className="quantity-desc">
+                                                                                <span className="minus" onClick={()=>toggleCartItemQty(item._id,"-")}><AiOutlineMinus/></span>
+                                                                                <span className="num" >{item.quantity}</span>
+                                                                                <span className="plus" onClick={()=>toggleCartItemQty(item._id,"+")}><AiOutlinePlus/></span>
+                                                                        </p>
+                                                                </div>
+                                                                <button type='button' className='remove-item' onClick={()=>removeItem(item._id)}>
+                                                                        <TiDeleteOutline/>
+                                                                </button>
+                                                        </div>
+                                                </div>
+                                        </div>
                                 ))
                         }
                 </div>
-
-                {!cart.cartItems.length==0 && (
+                {cartItems.length>=1 && (
                         <div className="cart-bottom">
                                 <div className="total">
                                         <h3>Sub-total:</h3>
-                                        <h3>₦{cart.cartItems.reduce((a,c)=>a+ c.qty * c.price,0).toLocaleString()}</h3>
+                                        <h3>₦{totalPrice}</h3>
                                 </div>
                                 <div className="btn-container">
-                                        <button type='button' className='btn' onClick={()=>{ router.push(session?.user? "/shipping":"/login?redirect=/shipping") && (setShowCart(false))} }>
-                                                Check Out
-                                        </button>  
+                                        <button type='button' className='btn' onClick={handleStripeCheckout}>
+                                                Pay with Stripe
+                                        </button>
+                                        
                                 </div>
                         </div>
                 )}
-        </motion.div>
+        </div>
     </div>
   )
 }
